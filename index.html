@@ -1,1 +1,393 @@
 
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="CASAV Soluciones. Servicios de mantenimiento integral para empresas, industrias, consorcios y particulares.">
+  <title>CASAV Soluciones | Mantenimiento Integral</title>
+
+  <style>
+    :root {
+      --navy: #10243a;
+      --blue: #183c5b;
+      --orange: #f28a25;
+      --light: #f4f6f8;
+      --white: #ffffff;
+      --text: #263544;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    header {
+      background: var(--navy);
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 27px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .brand span { color: var(--orange); }
+
+    nav { display: flex; gap: 25px; align-items: center; }
+    nav a:hover { color: var(--orange); }
+
+    .hero {
+      min-height: 570px;
+      display: flex;
+      align-items: center;
+      padding: 80px 8%;
+      color: white;
+      background:
+        linear-gradient(90deg, rgba(9,25,42,.95), rgba(9,25,42,.48)),
+        url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+
+    .hero-content { max-width: 680px; }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 64px);
+      line-height: 1.12;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span { color: var(--orange); }
+
+    .hero p {
+      font-size: 19px;
+      margin-bottom: 30px;
+      color: #e4eaf0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 25px;
+      background: var(--orange);
+      color: var(--navy);
+      font-weight: bold;
+      border-radius: 5px;
+      transition: .25s;
+    }
+
+    .btn:hover { transform: translateY(-3px); background: #ffad55; }
+
+    section { padding: 80px 8%; }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      color: var(--navy);
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .section-title p { color: #687887; }
+
+    .services {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .service {
+      background: white;
+      border-radius: 9px;
+      overflow: hidden;
+      box-shadow: 0 5px 22px rgba(0,0,0,.08);
+      transition: .3s;
+    }
+
+    .service:hover { transform: translateY(-7px); }
+
+    .service img {
+      width: 100%;
+      height: 205px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .service-content { padding: 23px; }
+
+    .service h3 { color: var(--navy); margin-bottom: 10px; }
+    .service p { color: #64717d; font-size: 15px; }
+
+    .about {
+      background: var(--light);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      border-radius: 9px;
+    }
+
+    .about h2 {
+      font-size: 35px;
+      color: var(--navy);
+      margin-bottom: 18px;
+    }
+
+    .about p { margin-bottom: 15px; }
+
+    .clients {
+      background: var(--navy);
+      color: white;
+      text-align: center;
+    }
+
+    .clients h2 { font-size: 34px; margin-bottom: 15px; }
+
+    .client-types {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .client-types span {
+      border: 1px solid rgba(255,255,255,.35);
+      padding: 13px 22px;
+      border-radius: 5px;
+    }
+
+    .contact {
+      background: var(--light);
+      text-align: center;
+    }
+
+    .contact h2 {
+      color: var(--navy);
+      font-size: 34px;
+      margin-bottom: 15px;
+    }
+
+    .contact p { margin-bottom: 25px; }
+
+    footer {
+      background: #091a2a;
+      color: white;
+      text-align: center;
+      padding: 28px 15px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      background: #25d366;
+      color: white;
+      padding: 15px 19px;
+      border-radius: 50px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px #0004;
+      z-index: 200;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(25px);
+      transition: .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .services { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      header { flex-wrap: wrap; gap: 12px; }
+      nav { width: 100%; justify-content: space-between; gap: 8px; font-size: 13px; }
+      .hero { min-height: 500px; padding: 65px 7%; }
+      .services { grid-template-columns: 1fr; }
+      section { padding: 60px 7%; }
+      .section-title h2, .about h2 { font-size: 29px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="#" class="brand">CASAV<span>.</span></a>
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#nosotros">Nosotros</a>
+    <a href="#contacto">Contacto</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="hero-content">
+      <h1>Soluciones integrales para cada <span>necesidad.</span></h1>
+      <p>
+        Mantenimiento, instalaciones y asistencia técnica
+        para empresas, industrias, consorcios y particulares.
+      </p>
+      <a class="btn" href="#contacto">Solicitar presupuesto</a>
+    </div>
+  </section>
+
+  <section id="servicios">
+    <div class="section-title reveal">
+      <h2>Nuestros servicios</h2>
+      <p>Un equipo preparado para resolver distintas necesidades.</p>
+    </div>
+
+    <div class="services">
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80" alt="Mantenimiento edilicio">
+        <div class="service-content">
+          <h3>Mantenimiento edilicio</h3>
+          <p>Reparaciones generales, pintura, albañilería y conservación de instalaciones.</p>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=800&q=80" alt="Electricidad">
+        <div class="service-content">
+          <h3>Electricidad</h3>
+          <p>Instalaciones, reparaciones y mantenimiento de sistemas eléctricos.</p>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1607472586893-edb57bdc0e39?auto=format&fit=crop&w=800&q=80" alt="Plomería">
+        <div class="service-content">
+          <h3>Plomería y sanitarios</h3>
+          <p>Reparaciones de cañerías, griferías e instalaciones sanitarias.</p>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1631545806609-7f8b4f2b4e8c?auto=format&fit=crop&w=800&q=80" alt="Climatización">
+        <div class="service-content">
+          <h3>Climatización</h3>
+          <p>Instalación y mantenimiento de equipos de aire acondicionado.</p>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&w=800&q=80" alt="Seguridad electrónica">
+        <div class="service-content">
+          <h3>Seguridad electrónica</h3>
+          <p>Cámaras de seguridad, alarmas y sistemas de control de acceso.</p>
+        </div>
+      </article>
+
+      <article class="service reveal">
+        <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=800&q=80" alt="Mantenimiento preventivo">
+        <div class="service-content">
+          <h3>Mantenimiento integral</h3>
+          <p>Planes preventivos y correctivos para instalaciones y equipamiento.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="about" id="nosotros">
+    <div class="reveal">
+      <h2>Trabajamos para mantener todo en funcionamiento.</h2>
+      <p>
+        En CASAV Soluciones brindamos servicios de mantenimiento,
+        instalaciones y asistencia técnica para distintos tipos de clientes.
+      </p>
+      <p>
+        Buscamos ofrecer respuestas eficientes, atención cercana
+        y soluciones adaptadas a cada necesidad.
+      </p>
+    </div>
+    <img class="reveal"
+      src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1000&q=85"
+      alt="Equipo de trabajo en mantenimiento">
+  </section>
+
+  <section class="clients">
+    <h2>¿A quiénes acompañamos?</h2>
+    <p>Soluciones para diferentes espacios y actividades.</p>
+    <div class="client-types">
+      <span>Empresas</span>
+      <span>Industrias</span>
+      <span>Consorcios</span>
+      <span>Particulares</span>
+    </div>
+  </section>
+
+  <section class="contact" id="contacto">
+    <h2>Hablemos de tu proyecto</h2>
+    <p>Contanos qué necesitás y nos pondremos en contacto.</p>
+    <a class="btn"
+       href="https://wa.me/5491172815934?text=Hola%20CASAV%2C%20quisiera%20realizar%20una%20consulta."
+       target="_blank" rel="noopener">
+       Contactar por WhatsApp
+    </a>
+    <p style="margin-top:25px">
+      Email: info@casavsoluciones.com.ar
+    </p>
+  </section>
+</main>
+
+<footer>
+  <strong>CASAV SOLUCIONES</strong>
+  <p>Mantenimiento integral y asistencia técnica.</p>
+  <p>© 2026 CASAV Soluciones. Todos los derechos reservados.</p>
+</footer>
+
+<a class="whatsapp"
+   href="https://wa.me/5491172815934"
+   target="_blank" rel="noopener"
+   aria-label="Contactar por WhatsApp">
+   WhatsApp
+</a>
+
+<script>
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll(".reveal").forEach(element => {
+    observer.observe(element);
+  });
+</script>
+
+</body>
+</html>
