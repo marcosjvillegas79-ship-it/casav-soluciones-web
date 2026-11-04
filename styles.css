@@ -83,3 +83,15 @@ header .logo:hover .casav-mark{animation:none!important;transform:none!important
 .logo-wordmark strong{font-size:28px;line-height:1;color:#172f45;letter-spacing:1.4px}
 .logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.2px;margin-top:6px;color:#172f45}
 @media(max-width:520px){.casav-mark{width:57px;height:53px}.logo-wordmark strong{font-size:24px}.logo-wordmark small{font-size:9px;letter-spacing:3.3px}}
+
+
+/* Encabezado con el archivo original de CASAV */
+header .logo{display:flex;align-items:center;gap:12px}
+.casav-mark{display:block;width:70px;height:auto;max-height:68px;object-fit:contain;flex:none}
+.logo-wordmark{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+.logo-wordmark strong{font-size:28px;letter-spacing:1.4px;color:#172f45}
+.logo-wordmark small{font-size:10px;letter-spacing:4.2px;margin-top:6px;color:#172f45}
+.brand-logo-item{display:flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;min-width:138px;height:58px;padding:0 16px;border:1px solid #e1e7ed;border-radius:8px;background:#fff;color:#172f45;box-shadow:0 3px 10px #0b1d3508}
+.brand-logo-item img{display:block;max-width:88px;max-height:30px;width:auto;height:auto;object-fit:contain}
+.brand-logo-item b{font-size:12px;font-weight:900;letter-spacing:.2px}
+@media(max-width:520px){.casav-mark{width:58px;max-height:56px}.logo-wordmark strong{font-size:24px}.logo-wordmark small{font-size:9px;letter-spacing:3.3px}.brand-logo-item{min-width:112px;height:50px;padding:0 12px}.brand-logo-item img{max-width:66px;max-height:25px}.brand-logo-item b{font-size:10px}}
