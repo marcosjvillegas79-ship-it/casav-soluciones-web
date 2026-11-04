@@ -95,3 +95,25 @@ header .logo{display:flex;align-items:center;gap:12px}
 .brand-logo-item img{display:block;max-width:88px;max-height:30px;width:auto;height:auto;object-fit:contain}
 .brand-logo-item b{font-size:12px;font-weight:900;letter-spacing:.2px}
 @media(max-width:520px){.casav-mark{width:58px;max-height:56px}.logo-wordmark strong{font-size:24px}.logo-wordmark small{font-size:9px;letter-spacing:3.3px}.brand-logo-item{min-width:112px;height:50px;padding:0 12px}.brand-logo-item img{max-width:66px;max-height:25px}.brand-logo-item b{font-size:10px}}
+
+
+/* Encabezado: engranaje a la izquierda y nombre a la derecha */
+header .logo{display:flex;flex-direction:row;align-items:center;gap:12px}
+header .casav-mark{width:70px;height:64px;flex:0 0 auto;animation:none!important;transform:none!important}
+header .logo-wordmark{display:flex;flex-direction:column;align-items:flex-start}
+header .logo-wordmark strong{font-size:28px;line-height:1;color:#172f45;letter-spacing:1.4px}
+header .logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.2px;margin-top:6px;color:#172f45}
+
+/* Marquee de marcas con sus logotipos */
+.brand-set{gap:22px}
+.brand-set .brand-logo{height:58px;min-width:112px;padding:8px 14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:#fff;border:1px solid #e1e7ed;border-radius:8px;box-shadow:0 3px 10px #0b1d3508}
+.brand-set .brand-logo img{display:block;width:auto;height:27px;max-width:105px;object-fit:contain}
+.brand-set .brand-logo b{font-size:9px;line-height:1.1;color:#526276;letter-spacing:.2px;font-weight:700;white-space:nowrap}
+.brand-set .brand-logo.logo-fallback{justify-content:center}
+@media(max-width:520px){
+ header .casav-mark{width:57px;height:53px}
+ header .logo-wordmark strong{font-size:24px}
+ header .logo-wordmark small{font-size:9px;letter-spacing:3.3px}
+ .brand-set .brand-logo{min-width:94px;height:52px;padding:6px 10px}
+ .brand-set .brand-logo img{height:23px;max-width:84px}
+}
