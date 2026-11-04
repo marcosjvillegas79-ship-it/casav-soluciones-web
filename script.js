@@ -19,7 +19,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
   return weekday&&hour>=9&&hour<18?'Ahora estamos dentro del horario de atención (lunes a viernes, de 9 a 18 hs).':'En este momento estamos fuera del horario de atención. Atendemos de lunes a viernes, de 9 a 18 hs. Podés dejarnos tu consulta y te responderemos el próximo día hábil.';
  };
  const answers={
-  servicios:'En CASAV ofrecemos electricidad, seguridad electrónica, mantenimiento general, pintura, albañilería, trabajos en seco, impermeabilización, plomería, climatización, herrería y carpintería. Contanos qué necesitás y te orientamos.',
+  servicios:'En CASAV ofrecemos electricidad, seguridad electrónica, mantenimiento general, pintura, albañilería, trabajos en seco, impermeabilización, plomería, climatización, herrería, carpintería y servicio técnico informático especializado para PC y notebooks. Realizamos diagnóstico, mantenimiento, reparación y actualización de hardware. Contanos qué necesitás y te orientamos.',
   presupuesto:'¡Claro! Para solicitar un presupuesto, contanos brevemente qué trabajo necesitás, en qué localidad se realiza y cómo podemos contactarte. También podés escribirnos directamente por WhatsApp.',
   horarios:hours(),
   portal:'Desde el Portal de clientes podés ingresar con tu cuenta. Si todavía no tenés acceso, seleccioná “Solicitar acceso”. Las altas son revisadas y autorizadas por el equipo de CASAV.\nIngresar: https://portal.casavsoluciones.com.ar/login.php\nSolicitar acceso: https://portal.casavsoluciones.com.ar/registro.php',
