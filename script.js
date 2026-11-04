@@ -49,3 +49,18 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  messages.addEventListener('click',e=>{const b=e.target.closest('button[data-question]');if(!b)return;const key=b.dataset.question;add(b.textContent,'user');add(answers[key]+'\n\nSi necesitás atención personal, podés continuar por WhatsApp: '+wa,'bot');});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('is-open'))hide();});
 })();
+
+
+// Animaciones discretas, barra de progreso y respeto por movimiento reducido.
+(()=>{
+ const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const header=document.querySelector('header'),progress=document.querySelector('.page-progress');
+ const update=()=>{if(header)header.classList.toggle('scrolled',window.scrollY>12);if(progress){const max=document.documentElement.scrollHeight-window.innerHeight;progress.style.width=(max>0?(window.scrollY/max)*100:0)+'%';}};
+ window.addEventListener('scroll',update,{passive:true});update();
+ if(reduce||!('IntersectionObserver'in window))return;
+ const targets=document.querySelectorAll('.hero>div,.hero>aside,.section>small,.section>h2,.section>.intro,.cards article,.portal>div,.portal>aside,.placeholder,.work div,.about,.contact>div,footer');
+ targets.forEach((el,i)=>{el.classList.add('reveal');if(el.matches('.cards article,.work div'))el.classList.add('reveal-delay-'+((i%3)+1));});
+ document.documentElement.classList.add('reveal-ready');
+ const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});},{threshold:.12,rootMargin:'0px 0px -35px 0px'});
+ targets.forEach(el=>observer.observe(el));
+})();
