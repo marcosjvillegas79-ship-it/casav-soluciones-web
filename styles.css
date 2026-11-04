@@ -281,3 +281,30 @@ header .logo .casav-mark{width:220px!important;height:116px!important;max-width:
 .form-submit{border:0;cursor:pointer;margin-top:8px}
 .form-honey{position:absolute!important;left:-5000px!important;width:1px!important;height:1px!important;opacity:0!important}
 @media(max-width:650px){.budget-form{padding:20px 16px}.form-grid{grid-template-columns:1fr;gap:14px}.form-wide{grid-column:auto}.choice-row{gap:12px;flex-direction:column}}
+
+
+/* Identidad CASAV: mostrar solo el símbolo del logo, sin el nombre */
+header .logo{width:116px!important;height:116px!important;overflow:hidden!important;position:relative!important;flex:0 0 116px!important}
+header .logo .casav-mark{position:absolute!important;left:0!important;top:0!important;width:480px!important;height:116px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:left center!important}
+.chat-avatar{overflow:hidden!important;position:relative!important;background:#fff!important;border:2px solid rgba(255,255,255,.7)!important;border-radius:12px!important}
+.chat-avatar-mark{display:block;position:absolute;inset:0;overflow:hidden}
+.chat-avatar-mark .casav-mark{position:absolute!important;left:0!important;top:0!important;width:162px!important;height:39px!important;max-width:none!important;max-height:none!important;object-fit:fill!important}
+.chat-panel{width:min(390px,calc(100vw - 32px))!important;height: min(560px,calc(100vh - 150px))!important;border-radius:20px!important}
+.chat-head{padding:16px 17px!important;min-height:74px}
+.chat-head strong{font-size:15px!important;letter-spacing:.1px}
+.chat-head small{font-size:11px!important}
+.chat-messages{padding:17px!important;scroll-behavior:smooth}
+.chat-msg{font-size:13.5px!important;line-height:1.62!important;padding:12px 14px!important;overflow-wrap:anywhere}
+.chat-inline-link{color:#13558a!important;font-weight:750!important;text-decoration:underline!important;text-underline-offset:2px}
+.chat-action-row{margin:0 0 12px 2px}
+.chat-action-link{display:inline-flex!important;align-items:center;justify-content:center;max-width:100%;padding:9px 13px!important;border-radius:9px!important;background:#fff!important;border:1px solid #d8e3ed!important;color:#12365c!important;font-size:12px!important;font-weight:750!important;text-decoration:none!important}
+.chat-action-link:hover{border-color:#f47721!important;color:#b94f0d!important}
+.chat-form{padding:12px!important}
+.chat-form input{font-size:14px!important;min-height:42px}
+.chat-foot{font-size:10px!important;padding:9px 12px!important}
+@media(max-width:520px){
+ header .logo{width:84px!important;height:84px!important;flex-basis:84px!important}
+ header .logo .casav-mark{width:348px!important;height:84px!important}
+ .chat-avatar-mark .casav-mark{width:117px!important;height:28px!important}
+ .chat-panel{height:min(560px,calc(100vh - 130px))!important}
+}
