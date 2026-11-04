@@ -158,3 +158,10 @@ header .logo-wordmark small{font-size:10px;letter-spacing:4.3px;margin-top:6px;c
 .service-brand-empty{color:#748397;font-size:12px}
 @media(max-width:650px){.service-modal{padding:10px}.service-dialog{max-height:94vh}.service-detail-head{padding:30px 22px 22px}.service-detail-head h2{font-size:28px}.service-photo-grid{grid-template-columns:1fr;padding:16px 16px 4px}.service-photo-grid img,.service-photo-grid img+img{height:210px}.service-detail-copy,.service-brand-area{padding-left:22px;padding-right:22px}.service-brand-set img{width:78px;height:42px}}
 @media(prefers-reduced-motion:reduce){.service-brand-track{animation:none!important}}
+
+/* Final refinements: crop the CASAV gear only and show brand symbols without labels */
+header .casav-mark{width:84px;height:52px;object-fit:cover;object-position:center top}
+.brand-set .brand-logo{height:62px;min-width:108px;padding:7px 15px;display:flex;align-items:center;justify-content:center;gap:0}
+.brand-set .brand-logo img{width:auto;height:auto;max-width:100px;max-height:43px;object-fit:contain}
+.brand-set .brand-logo b{display:none!important}
+@media(max-width:520px){header .casav-mark{width:65px;height:40px}.brand-set .brand-logo{height:52px;min-width:88px}.brand-set .brand-logo img{max-width:78px;max-height:36px}}
