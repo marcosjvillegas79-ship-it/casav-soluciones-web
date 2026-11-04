@@ -198,3 +198,21 @@ header .logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.3px;ma
 .service-photo-grid img{background:#eef2f6;object-position:center}
 .service-detail-head p{line-height:1.6}
 .service-brand-set img{flex:0 0 94px;max-width:94px}
+
+
+/* Header final: usar el archivo completo del logo, sin duplicar el nombre */
+header .logo{display:flex!important;align-items:center!important;justify-content:flex-start!important;width:auto!important;min-width:0!important;padding:0!important;margin:0!important}
+header .logo .casav-mark{position:static!important;display:block!important;width:118px!important;height:88px!important;max-width:118px!important;max-height:88px!important;object-fit:contain!important;object-position:center!important;clip-path:none!important;filter:none!important;transform:none!important}
+header .logo .casav-symbol-crop{display:contents!important;width:auto!important;height:auto!important;overflow:visible!important}
+header .logo .logo-wordmark{display:none!important}
+@media(max-width:520px){header .logo .casav-mark{width:92px!important;height:70px!important;max-width:92px!important;max-height:70px!important}}
+
+/* Cinta: logotipos individuales, contenidos en cajas iguales y sin texto */
+.brand-marquee{overflow:hidden!important}
+.brand-track{display:flex!important;align-items:center!important;width:max-content!important;animation:brandTicker 78s linear infinite!important}
+.brand-set{display:flex!important;flex:0 0 auto!important;align-items:center!important;gap:18px!important;padding:0 12px!important}
+.brand-set .brand-logo{box-sizing:border-box!important;display:flex!important;flex:0 0 76px!important;width:76px!important;min-width:76px!important;height:68px!important;padding:9px!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;position:relative!important;background:#fff!important;border:1px solid #e1e7ed!important;border-radius:9px!important}
+.brand-set .brand-logo img{display:block!important;width:48px!important;height:48px!important;max-width:48px!important;max-height:48px!important;object-fit:contain!important;object-position:center!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important}
+.brand-set .brand-logo b{display:none!important}
+.brand-groups{display:none!important}
+@media(max-width:520px){.brand-set{gap:10px!important}.brand-set .brand-logo{flex-basis:62px!important;width:62px!important;min-width:62px!important;height:56px!important;padding:6px!important}.brand-set .brand-logo img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important}}
