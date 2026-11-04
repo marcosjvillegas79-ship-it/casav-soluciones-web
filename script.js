@@ -72,7 +72,8 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const content=document.getElementById('service-detail-content');
  if(!modal||!content)return;
  const photo=(id)=>'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=1100&q=82';
- const brand=(slug,alt)=>({src:'https://cdn.simpleicons.org/'+slug,alt});
+ const brandDomains={siemens:'siemens.com',schneiderelectric:'se.com',philips:'philips.com',hikvision:'hikvision.com',dahuatechnology:'dahuasecurity.com',tplink:'tp-link.com',uniview:'uniview.com',avigilon:'avigilon.com',motorola:'motorolasolutions.com',imou:'imoulife.com',suprema:'supremainc.com',apc:'apc.com',kingstontechnology:'kingston.com',samsung:'samsung.com',sika:'arg.sika.com',lg:'lg.com',viewsonic:'viewsonic.com',dell:'dell.com',hp:'hp.com',logitech:'logitech.com',amd:'amd.com',intel:'intel.com',abb:'global.abb',legrand:'legrand.com',weg:'weg.net',chint:'chintglobal.com',phoenixcontact:'phoenixcontact.com',finder:'findernet.com',prysmian:'prysmiangroup.com',ledvance:'ledvance.com',cambre:'cambre.com.ar',sica:'sicaelec.com',hellermanntyton:'hellermanntyton.com'};
+ const brand=(slug,alt)=>({src:'https://www.google.com/s2/favicons?domain='+(brandDomains[slug]||slug+'.com')+'&sz=128',alt});
  const electricalBrands=[
   brand('schneiderelectric','Schneider Electric'),brand('siemens','Siemens'),brand('abb','ABB'),brand('legrand','Legrand'),brand('weg','WEG'),
   brand('chint','CHINT'),brand('phoenixcontact','Phoenix Contact'),brand('finder','Finder'),brand('prysmian','Prysmian'),brand('ledvance','LEDVANCE'),
