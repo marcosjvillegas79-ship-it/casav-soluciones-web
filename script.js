@@ -80,9 +80,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value)return;add(value,'user');input.value='';answer(value);});
  messages.addEventListener('click',e=>{
   const b=e.target.closest('button[data-question]');if(!b)return;
-  const key=b.dataset.question;add(b.textContent,'user');add(answers[key]||answers.contacto,'bot');
-  if(key==='whatsapp'||key==='contacto')addWhatsAppLink();
-  if(key==='presupuesto'){const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';messages.appendChild(a);}
+  const key=b.dataset.question;add(b.textContent,'user');answer(key);
  });
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('is-open'))hide();});
 })();
