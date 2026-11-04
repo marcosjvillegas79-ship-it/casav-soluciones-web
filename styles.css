@@ -259,3 +259,25 @@ header .logo .casav-mark{width:220px!important;height:116px!important;max-width:
 .hero:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.2;background:radial-gradient(circle at 78% 24%,rgba(244,119,33,.55),transparent 25%),linear-gradient(135deg,transparent 48%,rgba(255,255,255,.12) 49%,transparent 50%);background-size:auto,52px 52px}
 .hero>div,.hero>aside{z-index:1}
 @media(max-width:520px){header{min-height:94px!important;padding:6px 4vw!important}header .logo{height:84px!important}header .logo .casav-mark{width:154px!important;height:84px!important;max-width:154px!important;max-height:84px!important}.hero{min-height:560px!important}}
+
+
+/* Formulario de solicitud de presupuesto */
+.budget-section{background:#f5f7fa}
+.budget-form{max-width:900px;margin:30px auto 0;padding:30px;background:#fff;border:1px solid #e2e8ef;border-radius:16px;box-shadow:0 12px 35px #172f450c;text-align:left}
+.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.budget-form label{display:flex;flex-direction:column;gap:7px;color:#172f45;font-size:13px;font-weight:750}
+.budget-form label span{display:inline;color:#758397;font-size:11px;font-weight:500}
+.budget-form input:not([type=radio]):not([type=file]),.budget-form select,.budget-form textarea{width:100%;min-height:44px;padding:11px 12px;border:1px solid #d7e0e9;border-radius:7px;background:#fff;color:#24384d;font:inherit;font-weight:400;box-sizing:border-box}
+.budget-form textarea{resize:vertical;min-height:110px}
+.budget-form input:focus,.budget-form select:focus,.budget-form textarea:focus{outline:2px solid #f47721;outline-offset:1px;border-color:#f47721}
+.form-wide{grid-column:1/-1}
+.contact-preference{margin:24px 0 18px;padding:18px;border:1px solid #dce4ec;border-radius:9px}
+.contact-preference legend{padding:0 7px;color:#172f45;font-size:14px;font-weight:800}
+.choice-row{display:flex;flex-wrap:wrap;gap:20px}
+.budget-form .choice-row label{display:flex;flex-direction:row;align-items:center;gap:7px;font-weight:650}
+.choice-row input{accent-color:#f47721;width:17px;height:17px}
+.time-label{margin:15px 0}
+.form-privacy{color:#758397;font-size:11px;line-height:1.5}
+.form-submit{border:0;cursor:pointer;margin-top:8px}
+.form-honey{position:absolute!important;left:-5000px!important;width:1px!important;height:1px!important;opacity:0!important}
+@media(max-width:650px){.budget-form{padding:20px 16px}.form-grid{grid-template-columns:1fr;gap:14px}.form-wide{grid-column:auto}.choice-row{gap:12px;flex-direction:column}}
