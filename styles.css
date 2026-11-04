@@ -247,3 +247,15 @@ header .logo .casav-mark{width:158px!important;height:100px!important;max-width:
 .service-photo-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important}
 .service-photo-grid img{width:100%;height:245px!important;object-fit:cover!important;border-radius:10px}
 @media(max-width:650px){.service-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}.service-photo-grid img{height:145px!important}}
+
+
+/* Ajuste visual solicitado: logo protagonista y portada tecnológica */
+header{min-height:128px!important;padding:8px 4.5vw!important}
+header .logo{height:116px!important}
+header .logo .casav-mark{width:220px!important;height:116px!important;max-width:220px!important;max-height:116px!important}
+.hero{min-height:610px!important;background:
+ linear-gradient(90deg,rgba(5,18,36,.94) 0%,rgba(8,31,55,.82) 52%,rgba(8,31,55,.48) 100%),
+ url('https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=2400&q=90') center/cover no-repeat!important}
+.hero:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;opacity:.2;background:radial-gradient(circle at 78% 24%,rgba(244,119,33,.55),transparent 25%),linear-gradient(135deg,transparent 48%,rgba(255,255,255,.12) 49%,transparent 50%);background-size:auto,52px 52px}
+.hero>div,.hero>aside{z-index:1}
+@media(max-width:520px){header{min-height:94px!important;padding:6px 4vw!important}header .logo{height:84px!important}header .logo .casav-mark{width:154px!important;height:84px!important;max-width:154px!important;max-height:84px!important}.hero{min-height:560px!important}}
