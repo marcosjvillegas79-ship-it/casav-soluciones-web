@@ -64,3 +64,38 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target);}});},{threshold:.12,rootMargin:'0px 0px -35px 0px'});
  targets.forEach(el=>observer.observe(el));
 })();
+
+
+// Fichas interactivas de servicios: fotos ilustrativas y logotipos sin rótulos.
+(()=> {
+ const modal=document.getElementById('service-modal');
+ const content=document.getElementById('service-detail-content');
+ if(!modal||!content)return;
+ const photo=(id)=>'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=1100&q=82';
+ const brand=(slug,alt)=>({src:'https://cdn.simpleicons.org/'+slug,alt});
+ const data={
+  'Electricidad':{desc:'Instalaciones, diagnóstico y reparación eléctrica, mantenimiento preventivo y mejoras para hogares, comercios y empresas.',photos:['photo-1621905251189-08b45d6a269e','photo-1621905252507-b35492cc74b4'],brands:[brand('siemens','Siemens'),brand('schneiderelectric','Schneider Electric'),brand('philips','Philips')]},
+  'Seguridad electrónica':{desc:'Diseño e instalación de videovigilancia, cámaras IP, grabación, alarmas y soluciones de control de acceso.',photos:['photo-1557597774-9d273605dfa9','photo-1558008258-3256797b43f3'],brands:[brand('hikvision','Hikvision'),brand('dahuatechnology','Dahua'),brand('tplink','TP-Link'),brand('uniview','Uniview'),brand('avigilon','Avigilon'),brand('motorola','Motorola Solutions'),brand('imou','Imou')]},
+  'Mantenimiento general':{desc:'Mantenimiento preventivo y correctivo de instalaciones, revisión de equipos y resolución de incidencias edilicias.',photos:['photo-1581578731548-c64695cc6952','photo-1621905252507-b35492cc74b4'],brands:[brand('apc','APC'),brand('kingstontechnology','Kingston'),brand('samsung','Samsung')]},
+  'Obra y terminaciones':{desc:'Pintura, revestimientos, impermeabilización, albañilería y construcción en seco para renovar y proteger espacios.',photos:['photo-1562259949-e8e7689d7828','photo-1503387762-592dea58efb5'],brands:[brand('sika','Sika')]},
+  'Instalaciones':{desc:'Trabajos de plomería, climatización y adecuaciones de instalaciones, con diagnóstico y terminaciones prolijas.',photos:['photo-1607472586893-edb57bdc0e39','photo-1631545806609-1b4b4f1f1f7d'],brands:[]},
+  'Herrería y carpintería':{desc:'Fabricación, reparación y ajuste de elementos de herrería y carpintería, con soluciones adaptadas a cada necesidad.',photos:['photo-1504148455328-c376907d081c','photo-1620626011761-996317b8d101'],brands:[]},
+  'Servicio técnico informático especializado':{desc:'Diagnóstico, reparación y mantenimiento de PC y notebooks, actualización de memoria RAM y SSD, instalación de sistemas y armado de equipos.',photos:['photo-1581091226825-a6a2a5aee158','photo-1519389950473-47ba0277781c'],brands:[brand('lg','LG'),brand('samsung','Samsung'),brand('viewsonic','ViewSonic'),brand('dell','Dell'),brand('hp','HP'),brand('logitech','Logitech'),brand('amd','AMD'),brand('intel','Intel'),brand('kingstontechnology','Kingston')]}
+ };
+ const open=(name)=>{
+  const item=data[name];if(!item)return;
+  const logos=item.brands.length?item.brands.map(b=>'<img src="'+b.src+'" alt="'+b.alt+'" title="'+b.alt+'" loading="lazy" onerror="this.remove()">').join(''):'<span class="service-brand-empty">Consultanos por las marcas y materiales disponibles para este servicio.</span>';
+  const set='<div class="service-brand-set">'+logos+'</div>';
+  const ticker=item.brands.length?'<div class="service-brand-marquee"><div class="service-brand-track">'+set+set+'</div></div>':'';
+  content.innerHTML='<div class="service-detail"><div class="service-detail-head"><small>CASAV SOLUCIONES · SERVICIOS</small><h2 id="service-modal-title">'+name+'</h2><p>'+item.desc+'</p></div><div class="service-photo-grid"><img src="'+photo(item.photos[0])+'" alt="Profesional trabajando en '+name+'" loading="lazy"><img src="'+photo(item.photos[1])+'" alt="Trabajo y herramientas de '+name+'" loading="lazy"></div><div class="service-detail-copy"><h3>¿Qué podemos resolver?</h3><p>Evaluamos cada necesidad y coordinamos una solución acorde al espacio, al uso y al alcance del trabajo. Contactanos para contarnos qué necesitás y solicitar un presupuesto.</p></div><div class="service-brand-area"><h3>Marcas y tecnologías relacionadas</h3>'+ticker+ (item.brands.length?'':'<p class="service-brand-empty">Trabajamos con materiales y equipamiento adecuados a cada proyecto.</p>')+'</div></div>';
+  modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+ };
+ const close=()=>{modal.classList.remove('is-open');modal.setAttribute('aria-hidden','true');document.body.style.overflow='';};
+ document.querySelectorAll('.service-card').forEach(card=>{
+  const name=card.dataset.service;
+  card.addEventListener('click',()=>open(name));
+  card.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();open(name);}});
+ });
+ modal.addEventListener('click',e=>{if(e.target.closest('[data-close-service]'))close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))close();});
+})();
