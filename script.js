@@ -1,6 +1,6 @@
 const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEventListener('click',()=>n.classList.toggle('open'));document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',()=>n.classList.remove('open')));document.getElementById('year').textContent=new Date().getFullYear();
 
-// Asistente automático de preguntas frecuentes CASAV (sin API ni costos de IA).
+// Asistente automático CASAV: respuestas breves, enlaces legibles y navegación accesible.
 (()=>{
  const panel=document.getElementById('casav-chat-panel');
  const open=document.getElementById('chat-open');
@@ -8,45 +8,82 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const messages=document.getElementById('chat-messages');
  const form=document.getElementById('chat-form');
  const input=document.getElementById('chat-input');
+ const avatar=document.querySelector('.chat-avatar-mark');
+ const logo=document.querySelector('.casav-mark');
  if(!panel||!open||!close||!messages||!form||!input)return;
+ if(avatar&&logo){const mark=logo.cloneNode();mark.removeAttribute('alt');avatar.appendChild(mark);}
  const wa='https://wa.me/5491172815934?text='+encodeURIComponent('Hola CASAV, quisiera realizar una consulta.');
  const hours=()=>{
-  const now=new Date();
-  const parts=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Buenos_Aires',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(now);
+  const parts=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Buenos_Aires',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
   const day=parts.find(p=>p.type==='weekday')?.value||'';
   const hour=Number(parts.find(p=>p.type==='hour')?.value||0);
   const weekday=!day.startsWith('sáb')&&!day.startsWith('dom');
-  return weekday&&hour>=9&&hour<18?'Ahora estamos dentro del horario de atención (lunes a viernes, de 9 a 18 hs).':'En este momento estamos fuera del horario de atención. Atendemos de lunes a viernes, de 9 a 18 hs. Podés dejarnos tu consulta y te responderemos el próximo día hábil.';
+  return weekday&&hour>=9&&hour<18
+   ?'Estamos dentro del horario de atención informado: lunes a viernes, de 9 a 18 h.'
+   :'En este momento estamos fuera del horario de atención informado. Podés dejarnos tu consulta y el equipo podrá responderte el próximo día hábil.';
  };
  const answers={
-  servicios:'En CASAV ofrecemos electricidad, seguridad electrónica, mantenimiento general, pintura, albañilería, trabajos en seco, impermeabilización, plomería, climatización, herrería, carpintería y servicio técnico informático especializado para PC y notebooks. Realizamos diagnóstico, mantenimiento, reparación y actualización de hardware. Contanos qué necesitás y te orientamos.',
-  presupuesto:'¡Claro! Para solicitar un presupuesto, contanos brevemente qué trabajo necesitás, en qué localidad se realiza y cómo podemos contactarte. También podés escribirnos directamente por WhatsApp.',
+  servicios:'En CASAV brindamos servicios de electricidad, seguridad electrónica, mantenimiento general e industrial, obra y terminaciones, instalaciones, herrería, carpintería, soporte informático y soluciones para infraestructura y data centers. Si me contás qué necesitás, puedo orientarte hacia el servicio adecuado.',
+  presupuesto:'Para pedir un presupuesto, ingresá en “Solicitar presupuesto” y completá el formulario. Te vamos a pedir una descripción del trabajo, la localidad y tus datos de contacto. También podés adjuntar fotos o documentación para ayudarnos a evaluar el pedido.',
   horarios:hours(),
-  portal:'Desde el Portal de clientes podés ingresar con tu cuenta. Si todavía no tenés acceso, seleccioná “Solicitar acceso”. Las altas son revisadas y autorizadas por el equipo de CASAV.\nIngresar: https://portal.casavsoluciones.com.ar/login.php\nSolicitar acceso: https://portal.casavsoluciones.com.ar/registro.php',
-  administrador:'El acceso de administración está reservado al equipo autorizado de CASAV. Los clientes deben ingresar desde el Portal de clientes.',
-  whatsapp:'Podés comunicarte con CASAV por WhatsApp desde este enlace: '+wa,
-  contacto:'Podés comunicarte por WhatsApp desde el ícono de contacto o escribir a info@casavsoluciones.com.ar. '+hours()
+  portal:'El Portal de clientes permite ingresar a tu cuenta y consultar tus solicitudes. Si todavía no tenés usuario, podés solicitar un acceso; el equipo de CASAV revisará el pedido antes de habilitarlo.\nIngresar al portal: https://portal.casavsoluciones.com.ar/login.php\nSolicitar acceso: https://portal.casavsoluciones.com.ar/registro.php',
+  administrador:'El acceso de administración está reservado al personal autorizado de CASAV. Si sos cliente, utilizá el Portal de clientes.',
+  whatsapp:'Podés escribirnos directamente por WhatsApp para realizar una consulta general o coordinar el contacto con nuestro equipo.',
+  contacto:'Podés realizar una consulta general por WhatsApp o por correo electrónico a info@casavsoluciones.com.ar. Para solicitar un presupuesto formal, utilizá el formulario de la web.'
  };
- const add=(text,kind)=>{
-  const el=document.createElement('div');el.className='chat-msg '+(kind==='user'?'user-msg':'bot-msg');el.textContent=text;messages.appendChild(el);messages.scrollTop=messages.scrollHeight;
+ const linkLabel=(url)=>{
+  if(url.includes('wa.me'))return 'Abrir conversación por WhatsApp';
+  if(url.includes('/login.php'))return 'Ingresar al Portal de clientes';
+  if(url.includes('/registro.php'))return 'Solicitar acceso al portal';
+  return url;
+ };
+ const appendMessage=(el,value)=>{
+  const re=/(https?:\/\/[^\s]+)/g;let last=0,match;
+  while((match=re.exec(value))){
+   el.appendChild(document.createTextNode(value.slice(last,match.index)));
+   const a=document.createElement('a');a.href=match[0].replace(/[.,;]+$/,'');a.textContent=linkLabel(a.href);a.target='_blank';a.rel='noopener noreferrer';a.className='chat-inline-link';
+   el.appendChild(a);
+   const trailing=match[0].slice(a.href.length);if(trailing)el.appendChild(document.createTextNode(trailing));
+   last=re.lastIndex;
+  }
+  el.appendChild(document.createTextNode(value.slice(last)));
+ };
+ const add=(value,kind)=>{
+  const el=document.createElement('div');el.className='chat-msg '+(kind==='user'?'user-msg':'bot-msg');
+  appendMessage(el,value);messages.appendChild(el);messages.scrollTop=messages.scrollHeight;
+ };
+ const addWhatsAppLink=()=>{
+  const row=document.createElement('div');row.className='chat-action-row';
+  const a=document.createElement('a');a.href=wa;a.target='_blank';a.rel='noopener noreferrer';a.className='chat-action-link';a.textContent='Continuar por WhatsApp';
+  row.appendChild(a);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;
  };
  const answer=(raw)=>{
   const q=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
   let key='contacto';
-  if(/servicio|que hacen|que ofrecen|electric|plomer|pintur|impermeabil|camara|alarma|climat|herrer|carpinter|mantenim|trabajo/.test(q))key='servicios';
+  if(/servicio|que hacen|que ofrecen|electric|plomer|pintur|impermeabil|camara|alarma|climat|herrer|carpinter|mantenim|trabajo|data center|informat|computadora|notebook/.test(q))key='servicios';
   else if(/presup|cotiz|precio|costo|valor/.test(q))key='presupuesto';
   else if(/horario|atienden|abierto|abren|cuando/.test(q))key='horarios';
   else if(/portal|ingresar|registro|registr|acceso|cliente|autoriza/.test(q))key='portal';
   else if(/admin/.test(q))key='administrador';
-  else if(/whatsapp|telefono|celular|contact/.test(q))key='whatsapp';
-  add(answers[key]+'\n\n'+(key==='presupuesto'||key==='contacto'?' '+hours()+'\n':'')+'Si necesitás atención personal, podés continuar por WhatsApp: '+wa,'bot');
+  else if(/whatsapp|telefono|celular/.test(q))key='whatsapp';
+  else if(/hola|buen dia|buenas|gracias/.test(q)){add('¡Gracias por escribir a CASAV! ¿En qué podemos ayudarte? Podés consultar por servicios, presupuestos o el Portal de clientes.','bot');return;}
+  add(answers[key],'bot');
+  if(key==='whatsapp'||key==='contacto')addWhatsAppLink();
+  if(key==='presupuesto'){
+   const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';a.addEventListener('click',()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});messages.appendChild(a);
+  }
  };
  const show=()=>{panel.classList.add('is-open');panel.setAttribute('aria-hidden','false');open.setAttribute('aria-expanded','true');input.focus();};
  const hide=()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');open.focus();};
  open.addEventListener('click',()=>panel.classList.contains('is-open')?hide():show());
  close.addEventListener('click',hide);
  form.addEventListener('submit',e=>{e.preventDefault();const value=input.value.trim();if(!value)return;add(value,'user');input.value='';answer(value);});
- messages.addEventListener('click',e=>{const b=e.target.closest('button[data-question]');if(!b)return;const key=b.dataset.question;add(b.textContent,'user');add(answers[key]+'\n\nSi necesitás atención personal, podés continuar por WhatsApp: '+wa,'bot');});
+ messages.addEventListener('click',e=>{
+  const b=e.target.closest('button[data-question]');if(!b)return;
+  const key=b.dataset.question;add(b.textContent,'user');add(answers[key]||answers.contacto,'bot');
+  if(key==='whatsapp'||key==='contacto')addWhatsAppLink();
+  if(key==='presupuesto'){const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';messages.appendChild(a);}
+ });
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel.classList.contains('is-open'))hide();});
 })();
 
