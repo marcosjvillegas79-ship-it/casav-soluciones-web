@@ -165,3 +165,36 @@ header .casav-mark{width:84px;height:52px;object-fit:cover;object-position:cente
 .brand-set .brand-logo img{width:auto;height:auto;max-width:100px;max-height:43px;object-fit:contain}
 .brand-set .brand-logo b{display:none!important}
 @media(max-width:520px){header .casav-mark{width:65px;height:40px}.brand-set .brand-logo{height:52px;min-width:88px}.brand-set .brand-logo img{max-width:78px;max-height:36px}}
+
+
+/* Corrección precisa del encabezado: recorte real del engranaje del archivo original */
+header .logo{display:flex;align-items:center;gap:13px}
+header .casav-symbol-crop{position:relative;display:block;flex:0 0 70px;width:70px;height:70px;overflow:hidden}
+header .casav-symbol-crop .casav-mark{position:absolute!important;left:-70px!important;top:-27px!important;width:210px!important;height:168px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;display:block}
+header .logo-wordmark{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+header .logo-wordmark strong{font-size:29px;line-height:1;letter-spacing:1.6px;color:#172f45}
+header .logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.3px;margin-top:6px;color:#172f45}
+@media(max-width:520px){
+ header .casav-symbol-crop{flex-basis:58px;width:58px;height:58px}
+ header .casav-symbol-crop .casav-mark{left:-58px!important;top:-22.5px!important;width:174px!important;height:139.2px!important}
+ header .logo-wordmark strong{font-size:24px}
+ header .logo-wordmark small{font-size:9px;letter-spacing:3.3px}
+}
+
+/* Cinta de marcas: tarjetas de ancho fijo y logotipos contenidos, sin solapamientos */
+.brand-marquee{overflow:hidden;isolation:isolate}
+.brand-track{display:flex;align-items:center;width:max-content;will-change:transform}
+.brand-set{display:flex;align-items:center;gap:14px;flex:0 0 auto;padding:0 7px}
+.brand-set .brand-logo{box-sizing:border-box;display:flex!important;flex:0 0 118px!important;width:118px!important;min-width:118px!important;height:66px!important;padding:9px 12px!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;position:relative;background:#fff;border:1px solid #e1e7ed;border-radius:9px}
+.brand-set .brand-logo img{display:block!important;flex:none!important;width:92px!important;height:44px!important;max-width:92px!important;max-height:44px!important;object-fit:contain!important;object-position:center!important;padding:0!important;margin:0!important;border:0!important;background:transparent!important}
+.brand-set .brand-logo b{display:none!important}
+@media(max-width:520px){
+ .brand-set{gap:10px}
+ .brand-set .brand-logo{flex-basis:94px!important;width:94px!important;min-width:94px!important;height:54px!important;padding:7px!important}
+ .brand-set .brand-logo img{width:76px!important;height:36px!important;max-width:76px!important;max-height:36px!important}
+}
+
+/* Fichas de servicio: fotos amplias y sin recortes agresivos */
+.service-photo-grid img{background:#eef2f6;object-position:center}
+.service-detail-head p{line-height:1.6}
+.service-brand-set img{flex:0 0 94px;max-width:94px}
