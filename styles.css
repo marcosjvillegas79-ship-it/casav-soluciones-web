@@ -38,3 +38,12 @@ header.scrolled{box-shadow:0 8px 24px #0b1d3510}
 .brand-list span{display:inline-flex;align-items:center;min-height:34px;padding:7px 11px;border:1px solid #e5eaf0;border-radius:6px;background:#f7f9fc;color:#31445b;font-size:12px;font-weight:700}
 .brand-note{max-width:850px;margin:24px auto 0;color:var(--m);font-size:11px}
 @media(max-width:800px){.brand-groups{grid-template-columns:1fr}}
+
+
+/* Identidad visual CASAV: engranaje y herramientas en naranja y azul */
+header .logo{display:flex;align-items:center;gap:10px;min-width:max-content;color:var(--n);text-decoration:none}
+.casav-mark{width:52px;height:48px;display:block;flex:none}
+.logo-wordmark{display:flex;flex-direction:column;line-height:1}
+.logo-wordmark strong{font-size:25px;letter-spacing:1.2px;font-weight:900;color:#172f45}
+.logo-wordmark small{font-size:10px;letter-spacing:4px;font-weight:800;color:#172f45;margin-top:5px}
+@media(max-width:520px){.casav-mark{width:43px;height:40px}.logo-wordmark strong{font-size:22px}.logo-wordmark small{font-size:9px;letter-spacing:3px}}
