@@ -117,3 +117,44 @@ header .logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.2px;ma
  .brand-set .brand-logo{min-width:94px;height:52px;padding:6px 10px}
  .brand-set .brand-logo img{height:23px;max-width:84px}
 }
+
+
+/* Encabezado: recorte del engranaje del logo original; el texto va una sola vez a la derecha */
+header .logo{display:flex;align-items:center;gap:13px}
+header .casav-mark{width:78px;height:58px;object-fit:cover;object-position:center top;flex:none;filter:none;clip-path:none}
+header .logo-wordmark{display:flex;flex-direction:column;align-items:flex-start;line-height:1}
+header .logo-wordmark strong{font-size:29px;letter-spacing:1.6px;color:#172f45}
+header .logo-wordmark small{font-size:10px;letter-spacing:4.3px;margin-top:6px;color:#172f45}
+@media(max-width:520px){header .casav-mark{width:65px;height:50px}header .logo-wordmark strong{font-size:24px}header .logo-wordmark small{font-size:9px;letter-spacing:3.3px}}
+
+/* Fichas de servicios desplegables */
+.service-card{cursor:pointer;position:relative}
+.service-card:focus-visible{outline:3px solid var(--o);outline-offset:3px}
+.service-card:after{content:"Ver servicio ↗";display:inline-block;margin-top:13px;color:var(--o);font-size:11px;font-weight:800;letter-spacing:.3px}
+.service-modal{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:22px}
+.service-modal.is-open{display:flex}
+.service-modal-backdrop{position:absolute;inset:0;background:#071629c9;backdrop-filter:blur(4px)}
+.service-dialog{position:relative;width:min(980px,100%);max-height:min(90vh,900px);overflow:auto;background:#fff;border-radius:16px;box-shadow:0 25px 80px #0005;z-index:1}
+.service-close{position:sticky;top:12px;float:right;margin:12px 12px -48px 0;z-index:3;width:38px;height:38px;border:0;border-radius:50%;background:#fff;color:var(--n);font-size:27px;box-shadow:0 3px 14px #0002;cursor:pointer}
+.service-detail{padding:0 0 30px}
+.service-detail-head{padding:35px 42px 25px;background:linear-gradient(120deg,var(--n),var(--b));color:white}
+.service-detail-head small{color:#ffad76;font-size:11px;font-weight:800;letter-spacing:2px}
+.service-detail-head h2{font-size:34px;line-height:1.12;margin:9px 0}
+.service-detail-head p{color:#d9e3ee;max-width:720px;margin:0}
+.service-photo-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:14px;padding:22px 28px 8px}
+.service-photo-grid img{width:100%;height:260px;object-fit:cover;border-radius:10px;display:block}
+.service-photo-grid img+img{height:260px}
+.service-detail-copy{padding:15px 42px 4px;color:#526276}
+.service-detail-copy h3{color:var(--n);margin:0 0 8px;font-size:19px}
+.service-detail-copy p{margin:0}
+.service-brand-area{padding:20px 42px 0}
+.service-brand-area h3{font-size:16px;color:var(--n);margin:0 0 13px}
+.service-brand-marquee{overflow:hidden;position:relative;padding:12px 0;background:#f3f6f9;border-block:1px solid #e4eaf0}
+.service-brand-track{display:flex;width:max-content;animation:serviceBrandTicker 28s linear infinite}
+.service-brand-marquee:hover .service-brand-track{animation-play-state:paused}
+.service-brand-set{display:flex;align-items:center;gap:26px;padding:0 13px}
+.service-brand-set img{width:94px;height:48px;object-fit:contain;padding:5px;background:#fff;border:1px solid #e5eaf0;border-radius:7px}
+@keyframes serviceBrandTicker{to{transform:translateX(-50%)}}
+.service-brand-empty{color:#748397;font-size:12px}
+@media(max-width:650px){.service-modal{padding:10px}.service-dialog{max-height:94vh}.service-detail-head{padding:30px 22px 22px}.service-detail-head h2{font-size:28px}.service-photo-grid{grid-template-columns:1fr;padding:16px 16px 4px}.service-photo-grid img,.service-photo-grid img+img{height:210px}.service-detail-copy,.service-brand-area{padding-left:22px;padding-right:22px}.service-brand-set img{width:78px;height:42px}}
+@media(prefers-reduced-motion:reduce){.service-brand-track{animation:none!important}}
