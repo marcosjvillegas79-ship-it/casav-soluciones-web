@@ -216,3 +216,14 @@ header .logo .logo-wordmark{display:none!important}
 .brand-set .brand-logo b{display:none!important}
 .brand-groups{display:none!important}
 @media(max-width:520px){.brand-set{gap:10px!important}.brand-set .brand-logo{flex-basis:62px!important;width:62px!important;min-width:62px!important;height:56px!important;padding:6px!important}.brand-set .brand-logo img{width:42px!important;height:42px!important;max-width:42px!important;max-height:42px!important}}
+
+
+/* Logo principal más visible: conservar el logo completo como una sola imagen */
+header{min-height:112px!important;padding:10px 4.5vw!important}
+header .logo{height:100px!important;display:flex!important;align-items:center!important}
+header .logo .casav-mark{width:158px!important;height:100px!important;max-width:158px!important;max-height:100px!important;object-fit:contain!important}
+@media(max-width:520px){header{min-height:86px!important;padding:7px 4vw!important}header .logo{height:78px!important}header .logo .casav-mark{width:122px!important;height:78px!important;max-width:122px!important;max-height:78px!important}}
+.service-card{min-height:190px}
+.service-photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.service-photo-grid img{height:300px!important;object-position:center}
+@media(max-width:650px){.service-photo-grid{grid-template-columns:1fr}.service-photo-grid img{height:230px!important}}
