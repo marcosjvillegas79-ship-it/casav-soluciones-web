@@ -73,3 +73,13 @@ header .logo:hover .casav-mark{animation:casavLogoHover .65s ease both}
 @keyframes brandCardIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 @media(max-width:520px){header{min-height:72px}.casav-mark{width:55px;height:51px}.logo-wordmark strong{font-size:25px}.logo-wordmark small{font-size:9px;letter-spacing:4px}.brand-set span{min-width:96px;height:48px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){.casav-mark,.brand-track,.brand-group{animation:none!important}}
+
+
+/* Ajuste final del logotipo: proporciones estables, sin movimiento */
+header .logo{gap:10px;align-items:center}
+.casav-mark{width:70px;height:64px;animation:none!important;transform:none!important;filter:none}
+header .logo:hover .casav-mark{animation:none!important;transform:none!important}
+.logo-wordmark{align-items:flex-start}
+.logo-wordmark strong{font-size:28px;line-height:1;color:#172f45;letter-spacing:1.4px}
+.logo-wordmark small{font-size:10px;line-height:1;letter-spacing:4.2px;margin-top:6px;color:#172f45}
+@media(max-width:520px){.casav-mark{width:57px;height:53px}.logo-wordmark strong{font-size:24px}.logo-wordmark small{font-size:9px;letter-spacing:3.3px}}
