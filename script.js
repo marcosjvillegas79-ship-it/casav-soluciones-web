@@ -58,20 +58,28 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
   row.appendChild(a);messages.appendChild(row);messages.scrollTop=messages.scrollHeight;
  };
  const answer=(raw)=>{
-  const q=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  let key='contacto';
-  if(/servicio|que hacen|que ofrecen|electric|plomer|pintur|impermeabil|camara|alarma|climat|herrer|carpinter|mantenim|trabajo|data center|informat|computadora|notebook/.test(q))key='servicios';
-  else if(/presup|cotiz|precio|costo|valor/.test(q))key='presupuesto';
-  else if(/horario|atienden|abierto|abren|cuando/.test(q))key='horarios';
-  else if(/portal|ingresar|registro|registr|acceso|cliente|autoriza/.test(q))key='portal';
+  const q=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
+  let key='contacto',reply=null;
+  if(/presup|cotiz|precio|costo|valor|cuanto sale/.test(q))key='presupuesto';
+  else if(/horario|atienden|abierto|abren/.test(q))key='horarios';
+  else if(/portal|ingresar|registro|registr|acceso|cliente|ticket/.test(q))key='portal';
   else if(/admin/.test(q))key='administrador';
-  else if(/whatsapp|telefono|celular/.test(q))key='whatsapp';
-  else if(/hola|buen dia|buenas|gracias/.test(q)){add('¡Gracias por escribir a CASAV! ¿En qué podemos ayudarte? Podés consultar por servicios, presupuestos o el Portal de clientes.','bot');return;}
+  else if(/whatsapp|telefono|celular|llamar/.test(q))key='whatsapp';
+  else if(/seguridad|camara|cctv|alarma|videovigil|control de acceso/.test(q))reply='En seguridad electrónica realizamos videovigilancia con cámaras IP, grabación, alarmas y control de acceso. Podemos orientarte según el lugar, la cantidad de cámaras y si necesitás verlas desde el celular. Para cotizar, contanos la localidad y adjuntá fotos del sitio.';
+  else if(/electric|tablero|disyuntor|termica|iluminacion/.test(q))reply='En electricidad hacemos instalaciones, diagnóstico de fallas, tableros, protecciones, iluminación y mantenimiento. Describí la falla y la localidad para evaluar el trabajo.';
+  else if(/plomer|agua|canilla|bano|sanitari|perdida/.test(q))reply='En instalaciones atendemos trabajos de plomería, sanitarios, cañerías y adecuaciones. Indicá dónde está el problema y la localidad. Si es urgente, contactanos por WhatsApp.';
+  else if(/aire|climat|refriger|calefaccion/.test(q))reply='Realizamos trabajos de climatización e instalaciones vinculadas. Decinos si es instalación, mantenimiento o reparación, el tipo de equipo y la localidad.';
+  else if(/impermeabil|filtracion|humedad|terraza|techo/.test(q))reply='En obra y terminaciones hacemos impermeabilización, pintura, revestimientos, albañilería y trabajos en seco. Contanos qué superficie presenta el problema y adjuntá fotos para solicitar una evaluación.';
+  else if(/herrer|soldad|carpinter|mueble|estructura metal/.test(q))reply='En herrería y carpintería realizamos reparaciones, ajustes, fabricación y trabajos a medida, incluyendo soldadura. Describí medidas, material y lugar del trabajo.';
+  else if(/comput|notebook|pc|informat|ssd|memoria ram/.test(q))reply='El servicio técnico informático incluye diagnóstico y mantenimiento de PC y notebooks, actualización de RAM y SSD, instalación de sistemas y armado de equipos. Contanos marca/modelo, falla y localidad.';
+  else if(/industrial|bomba|motor|generador|grupo electrogeno/.test(q))reply='En mantenimiento industrial atendemos equipos, bombas, motores, tableros e instalaciones. Indicá el equipo, la falla y si el servicio es preventivo o correctivo.';
+  else if(/data center|datacenter|rack|cableado|ups|servidor/.test(q))reply='En data centers e infraestructura trabajamos con racks, cableado estructurado, energía crítica, UPS y climatización de salas técnicas. Describí el alcance y el sitio.';
+  else if(/servicio|que hacen|que ofrecen|mantenim|trabajo/.test(q))key='servicios';
+  else if(/hola|buen dia|buenas|gracias/.test(q)){add('¡Hola! Gracias por comunicarte con CASAV. Puedo orientarte sobre servicios, presupuestos, seguridad electrónica, instalaciones, mantenimiento, soporte informático o el portal de clientes. ¿Qué necesitás resolver?','bot');return;}
+  if(reply){add(reply,'bot');addWhatsAppLink();return;}
   add(answers[key],'bot');
   if(key==='whatsapp'||key==='contacto')addWhatsAppLink();
-  if(key==='presupuesto'){
-   const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';a.addEventListener('click',()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});messages.appendChild(a);
-  }
+  if(key==='presupuesto'){const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';a.addEventListener('click',()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});messages.appendChild(a);}
  };
  const show=()=>{panel.classList.add('is-open');panel.setAttribute('aria-hidden','false');open.setAttribute('aria-expanded','true');input.focus();};
  const hide=()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');open.focus();};
@@ -116,8 +124,8 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  ];
  const data={
   'Electricidad':{desc:'Instalaciones eléctricas residenciales, comerciales e industriales; montaje de tableros, protecciones, iluminación, canalizaciones, diagnóstico y mantenimiento.',photos:['photo-1621905251189-08b45d6a269e','photo-1621905252507-b35492cc74b4','photo-1581092160562-40aa08e78837','photo-1621905251918-48416bd8575a'],brands:electricalBrands},
-  'Seguridad electrónica':{desc:'Diseño e instalación de videovigilancia, cámaras IP, grabación, alarmas y soluciones de control de acceso.',photos:['photo-1557597774-9d273605dfa9','photo-1558008258-3256797b43f3','photo-1563013544-bd5a0b7d9e4b','photo-1581092918056-0c4c3acd378'],brands:[brand('hikvision','Hikvision'),brand('dahuatechnology','Dahua'),brand('tplink','TP-Link'),brand('uniview','Uniview'),brand('avigilon','Avigilon'),brand('motorola','Motorola Solutions'),brand('imou','Imou'),brand('suprema','Suprema'),brand('intelbras','Intelbras'),brand('ezviz','EZVIZ'),brand('ajax','Ajax Systems'),brand('zkteco','ZKTeco')]},
-  'Mantenimiento general':{desc:'Mantenimiento preventivo y correctivo de edificios, instalaciones y equipamiento; inspecciones, reparaciones y seguimiento de incidencias.',photos:['photo-1581578731548-c64695cc6952','photo-1581092580497-e0d23cbdf1dc','photo-1504307651254-35680f356dfd','photo-1521791055366-0d553872125f'],brands:[...electricalBrands,brand('apc','APC')]},
+  'Seguridad electrónica':{desc:'Diseño e instalación de videovigilancia, cámaras IP, grabación, alarmas y soluciones de control de acceso.',photos:['photo-1557597774-9d273605dfa9','photo-1558008258-3256797b43f3','photo-1582139329536-e7284fece509','photo-1563013544-bd5a0b7d9e4b'],brands:[brand('hikvision','Hikvision'),brand('dahuatechnology','Dahua'),brand('tplink','TP-Link'),brand('uniview','Uniview'),brand('avigilon','Avigilon'),brand('motorola','Motorola Solutions'),brand('imou','Imou'),brand('suprema','Suprema'),brand('intelbras','Intelbras'),brand('ezviz','EZVIZ'),brand('ajax','Ajax Systems'),brand('zkteco','ZKTeco')]},
+  'Mantenimiento general':{desc:'Mantenimiento preventivo y correctivo de edificios, instalaciones y equipamiento; inspecciones, reparaciones y seguimiento de incidencias.',photos:['photo-1581578731548-c64695cc6952','photo-1504307651254-35680f356dfd','photo-1523413651479-597eb2da0ad6','photo-1581093458791-9d42e3c2b7f4'],brands:[...electricalBrands,brand('apc','APC')]},
   'Mantenimiento industrial':{desc:'Mantenimiento industrial preventivo y correctivo de máquinas, bombas, motores, tableros, instalaciones y sistemas auxiliares.',photos:['photo-1581092160607-ee22621dd758','photo-1581092334651-ddf26d9a09d0','photo-1581092162384-8987c1d64718','photo-1581092795360-fd1ca04f0952'],brands:[brand('siemens','Siemens'),brand('abb','ABB'),brand('weg','WEG'),brand('schneiderelectric','Schneider Electric'),brand('phoenixcontact','Phoenix Contact'),brand('finder','Finder')]},
   'Obra y terminaciones':{desc:'Pintura profesional, revestimientos, impermeabilización, albañilería y construcción en seco para renovar y proteger espacios.',photos:['photo-1562259949-e8e7689d7828','photo-1589939705384-5185137a7f0f','photo-1503387762-592deb58ef4e','photo-1600607687939-ce8a6c25118c'],brands:[brand('sika','Sika'),brand('sherwinwilliams','Sherwin-Williams'),brand('alba','Alba'),brand('weber','Weber'),brand('knauf','Knauf'),brand('durlock','Durlock')]},
   'Instalaciones':{desc:'Instalaciones de plomería, climatización, cableado y adecuaciones técnicas, con diagnóstico y terminaciones prolijas.',photos:['photo-1607472586893-edb57bdc0e39','photo-1631545806609-1b4b4f1f1f7d','photo-1600566753086-00f18fb6b3ea','photo-1600585154340-be6161a56a0c'],brands:[brand('fv','FV'),brand('ferrum','Ferrum'),brand('tigre','Tigre'),brand('ips','IPS'),brand('rotoplas','Rotoplas'),brand('carrier','Carrier'),brand('surrey','Surrey'),brand('bgh','BGH'),brand('daikin','Daikin'),brand('midea','Midea'),brand('lg','LG'),brand('samsung','Samsung')]},
@@ -128,9 +136,9 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const open=(name)=>{
   const item=data[name];if(!item)return;
   const gallery=item.photos.map((id,i)=>'<img src="'+photo(id)+'" alt="Imagen '+(i+1)+' de '+name+'" loading="lazy">').join('');
-  const logos=item.brands.length?item.brands.map(b=>'<img src="'+b.src+'" alt="'+b.alt+'" title="'+b.alt+'" loading="lazy" onerror="this.remove()">').join(''):'<span class="service-brand-empty">Consultanos por las marcas y materiales disponibles para este servicio.</span>';
+  const logos=item.brands.length?item.brands.map(b=>'<div class="service-brand-item"><img src="'+b.src+'" alt="Logotipo '+b.alt+'" loading="lazy" onerror="this.style.display=\'none\'"><span>'+b.alt+'</span></div>').join(''):'<span class="service-brand-empty">Consultanos por las marcas y materiales disponibles para este servicio.</span>';
   const set='<div class="service-brand-set">'+logos+'</div>';
-  const ticker=item.brands.length?'<div class="service-brand-marquee"><div class="service-brand-track">'+set+set+'</div></div>':'';
+  const ticker=item.brands.length?'<div class="service-brand-marquee">'+set+'</div>':'';
   content.innerHTML='<div class="service-detail"><div class="service-detail-head"><small>CASAV SOLUCIONES · SERVICIOS</small><h2 id="service-modal-title">'+name+'</h2><p>'+item.desc+'</p></div><div class="service-photo-grid">'+gallery+'</div><div class="service-detail-copy"><h3>¿Qué podemos resolver?</h3><p>Evaluamos cada necesidad y coordinamos una solución acorde al espacio, al uso y al alcance del trabajo. Contactanos para contarnos qué necesitás y solicitar un presupuesto.</p></div><div class="service-brand-area"><h3>Marcas y tecnologías relacionadas</h3>'+ticker+ (item.brands.length?'':'<p class="service-brand-empty">Trabajamos con materiales y equipamiento adecuados a cada proyecto.</p>')+'</div></div>';
   modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
  };
