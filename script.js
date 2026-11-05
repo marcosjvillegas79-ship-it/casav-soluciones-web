@@ -138,7 +138,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
   const gallery=item.photos.map((id,i)=>'<img src="'+photo(id)+'" alt="Imagen '+(i+1)+' de '+name+'" loading="lazy">').join('');
   const logos=item.brands.length?item.brands.map(b=>'<div class="service-brand-item"><img src="'+b.src+'" alt="Logotipo '+b.alt+'" loading="lazy" onerror="this.style.display=\'none\'"><span>'+b.alt+'</span></div>').join(''):'<span class="service-brand-empty">Consultanos por las marcas y materiales disponibles para este servicio.</span>';
   const set='<div class="service-brand-set">'+logos+'</div>';
-  const ticker=item.brands.length?'<div class="service-brand-marquee">'+set+'</div>':'';
+  const ticker=item.brands.length?'<div class="service-brand-marquee"><div class="service-brand-track">'+set+set+'</div></div>':'';
   content.innerHTML='<div class="service-detail"><div class="service-detail-head"><small>CASAV SOLUCIONES · SERVICIOS</small><h2 id="service-modal-title">'+name+'</h2><p>'+item.desc+'</p></div><div class="service-photo-grid">'+gallery+'</div><div class="service-detail-copy"><h3>¿Qué podemos resolver?</h3><p>Evaluamos cada necesidad y coordinamos una solución acorde al espacio, al uso y al alcance del trabajo. Contactanos para contarnos qué necesitás y solicitar un presupuesto.</p></div><div class="service-brand-area"><h3>Marcas y tecnologías relacionadas</h3>'+ticker+ (item.brands.length?'':'<p class="service-brand-empty">Trabajamos con materiales y equipamiento adecuados a cada proyecto.</p>')+'</div></div>';
   modal.classList.add('is-open');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
  };
