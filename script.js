@@ -174,3 +174,17 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  if(!formSection||!services)return;
  services.insertAdjacentElement('afterend',formSection);
 })();
+
+// Carrusel de promociones: rotación automática y controles manuales.
+(()=>{
+ const root=document.querySelector('.offers-carousel');if(!root)return;
+ const slides=[...root.querySelectorAll('.offer-slide')],dots=[...root.querySelectorAll('.offers-dots button')];
+ const prev=root.querySelector('.offers-prev'),next=root.querySelector('.offers-next');let active=0,timer=null;
+ const show=(n)=>{active=(n+slides.length)%slides.length;slides.forEach((slide,i)=>{const on=i===active;slide.classList.toggle('is-active',on);slide.setAttribute('aria-hidden',String(!on));});dots.forEach((dot,i)=>{const on=i===active;dot.classList.toggle('is-active',on);dot.setAttribute('aria-selected',String(on));});};
+ const stop=()=>{if(timer){clearInterval(timer);timer=null;}};
+ const start=()=>{stop();if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(()=>show(active+1),6000);};
+ prev?.addEventListener('click',()=>{show(active-1);start();});next?.addEventListener('click',()=>{show(active+1);start();});
+ dots.forEach((dot,i)=>dot.addEventListener('click',()=>{show(i);start();}));
+ root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',start);root.addEventListener('focusin',stop);root.addEventListener('focusout',start);
+ show(0);start();
+})();
