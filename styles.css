@@ -452,3 +452,25 @@ body.budget-drawer-open{overflow:hidden}
 
 /* Se elimina el acceso flotante al formulario; se conservan los enlaces internos de la página */
 .budget-sticky-cta{display:none!important}
+
+
+/* Ofertas destacadas cerca del inicio */
+.offers-section{padding-top:58px;padding-bottom:62px;background:#fff}
+.offer-feature{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1.5fr .8fr;gap:28px;text-align:left;overflow:hidden;border:1px solid #e3eaf1;border-radius:18px;background:#fff;box-shadow:0 16px 42px #0b1d3510}
+.offer-copy{padding:32px}
+.offer-tag{display:inline-block;padding:7px 11px;border-radius:20px;background:#fff0e5;color:#c65d16;font-size:10px;font-weight:900;letter-spacing:1px}
+.offer-copy h3{margin:16px 0 8px;color:var(--n);font-size:27px;line-height:1.15}
+.offer-lead{color:var(--m);font-size:14px;max-width:640px}
+.offer-price-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0 10px}
+.offer-price-row>div{padding:15px;border:1px solid #e4eaf0;border-radius:10px;background:#f8fafc}
+.offer-price-row small,.offer-price-row span{display:block;color:var(--m);font-size:10px;line-height:1.45}
+.offer-price-row strong{display:block;margin:7px 0;color:var(--n);font-size:22px;line-height:1.15}
+.offer-price-row span{font-size:11px}
+.offer-cta{margin-top:16px}
+.offer-visual{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:28px;background:linear-gradient(145deg,#0b1d35,#17466f);color:#fff;text-align:center}
+.camera-icon{display:grid;place-items:center;width:132px;height:132px;border:2px solid #ffffff70;border-radius:28px;background:#ffffff12;color:#ff9a52;font-size:76px;box-shadow:0 15px 35px #0003}
+.offer-visual b{font-size:12px;letter-spacing:2px}
+.offer-visual span{max-width:220px;color:#d5e1ed;font-size:12px}
+.offer-note{max-width:1000px;margin:18px auto 0;color:#718095;font-size:10px;line-height:1.6}
+.offer-note a{color:#17466f;text-decoration:underline;text-underline-offset:2px;font-weight:700}
+@media(max-width:760px){.offer-feature{grid-template-columns:1fr}.offer-copy{padding:24px 20px}.offer-visual{min-height:190px}.offer-price-row{grid-template-columns:1fr}.offer-copy h3{font-size:23px}}
