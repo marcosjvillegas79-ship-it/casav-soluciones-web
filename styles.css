@@ -375,3 +375,37 @@ header{min-height:148px!important;padding:8px 4.5vw!important}header .logo{width
 /* Marcas: logotipo y nombre visible */
 .service-brand-set{display:flex!important;align-items:stretch!important;gap:12px!important;flex-wrap:wrap!important;justify-content:flex-start!important;padding:8px 0!important}.service-brand-set .service-brand-item{display:flex!important;flex:0 0 116px!important;min-height:92px!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:7px!important;padding:10px 8px!important;background:#fff!important;border:1px solid #e1e7ed!important;border-radius:10px!important;text-align:center!important;color:#26394b!important;font-size:12px!important;font-weight:700!important}.service-brand-set .service-brand-item img{display:block!important;width:58px!important;height:42px!important;max-width:58px!important;max-height:42px!important;object-fit:contain!important}.service-brand-set .service-brand-item span{display:block!important;line-height:1.2!important}.service-brand-marquee{overflow:visible!important}.service-brand-track{display:block!important;width:auto!important;animation:none!important}
 @media(max-width:520px){header{min-height:112px!important;padding:5px 4vw!important}header .logo{width:126px!important;height:104px!important;flex-basis:126px!important}header .logo .casav-mark{width:122px!important;height:100px!important;max-width:122px!important;max-height:100px!important}.service-brand-set{gap:8px!important}.service-brand-set .service-brand-item{flex-basis:calc(33.333% - 8px)!important;min-height:82px!important;padding:7px 4px!important;font-size:10px!important}.service-brand-set .service-brand-item img{width:48px!important;height:36px!important;max-width:48px!important;max-height:36px!important}}
+
+
+/* Panel lateral superpuesto para el formulario de presupuesto */
+.budget-drawer{position:fixed;inset:0;z-index:1200;visibility:hidden;pointer-events:none}
+.budget-drawer.is-open{visibility:visible;pointer-events:auto}
+.budget-drawer-backdrop{position:absolute;inset:0;background:rgba(7,20,35,.62);opacity:0;transition:opacity .25s ease}
+.budget-drawer.is-open .budget-drawer-backdrop{opacity:1}
+.budget-drawer-panel{position:absolute;right:0;top:0;width:min(760px,94vw);height:100%;overflow-y:auto;background:#f5f7fa;box-shadow:-18px 0 55px rgba(0,0,0,.2);transform:translateX(102%);transition:transform .3s ease}
+.budget-drawer.is-open .budget-drawer-panel{transform:translateX(0)}
+.budget-drawer-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:#172f45;color:#fff;box-shadow:0 3px 12px #172f4522}
+.budget-drawer-top strong{font-size:18px}
+.budget-drawer-close{width:38px;height:38px;border:0;border-radius:50%;background:#ffffff20;color:#fff;font-size:27px;cursor:pointer}
+.budget-drawer-content .budget-section{padding:26px 28px 40px!important;margin:0!important;min-height:100%;background:#f5f7fa}
+.budget-drawer-content .budget-section>h2{margin-top:8px}
+.budget-drawer-content .budget-form{margin-top:18px;padding:22px}
+.budget-drawer-launcher{position:fixed;right:22px;bottom:92px;z-index:1000;border:0;border-radius:999px;padding:15px 21px;background:#f47721;color:#fff;font-weight:800;box-shadow:0 8px 24px #172f4540;cursor:pointer}
+.budget-drawer-launcher:hover{background:#df6415;transform:translateY(-2px)}
+body.budget-drawer-open{overflow:hidden}
+@media(max-width:650px){.budget-drawer-panel{width:100vw}.budget-drawer-content .budget-section{padding:20px 14px 30px!important}.budget-drawer-content .budget-form{padding:18px 13px}.budget-drawer-launcher{right:14px;bottom:86px;padding:13px 17px}}
+@media(prefers-reduced-motion:reduce){.budget-drawer-backdrop,.budget-drawer-panel{transition:none!important}}
+
+/* Marcas en movimiento, con nombre legible debajo del logotipo */
+.service-brand-track{display:flex!important;width:max-content!important;animation:serviceBrandTicker 38s linear infinite!important}
+.service-brand-marquee{overflow:hidden!important}
+.service-brand-set{display:flex!important;flex-wrap:nowrap!important;align-items:center!important;gap:14px!important;padding:10px 14px!important}
+.service-brand-set .service-brand-item{flex:0 0 116px!important;min-height:94px!important}
+.service-brand-marquee:hover .service-brand-track{animation-play-state:paused!important}
+@keyframes serviceBrandTicker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* Centrado real del símbolo dentro del avatar del asistente */
+.chat-avatar{display:flex!important;align-items:center!important;justify-content:center!important}
+.chat-avatar-mark{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;overflow:hidden!important}
+.chat-avatar-mark .casav-mark{position:relative!important;left:auto!important;top:0!important;width:58px!important;height:86px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;transform:none!important}
+@media(max-width:520px){.service-brand-set .service-brand-item{flex-basis:100px!important}.chat-avatar-mark .casav-mark{width:54px!important;height:80px!important}}
