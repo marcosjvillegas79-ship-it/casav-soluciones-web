@@ -424,3 +424,8 @@ body.budget-drawer-open{overflow:hidden}
  .budget-sticky-cta{right:14px!important;bottom:16px!important;padding:12px 16px!important}
 }
 @media(prefers-reduced-motion:reduce){.budget-sticky-cta{transition:none!important}}
+
+/* Avatar: recorte del isotipo superior, centrado horizontalmente sin deformarlo */
+.chat-avatar-mark{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;overflow:hidden!important}
+.chat-avatar-mark .chat-avatar-logo{position:absolute!important;left:50%!important;top:0!important;width:56px!important;height:53.4px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:top center!important;transform:translateX(-50%)!important;margin:0!important}
+@media(max-width:520px){.chat-avatar-mark .chat-avatar-logo{width:56px!important;height:53.4px!important}}
