@@ -429,3 +429,22 @@ body.budget-drawer-open{overflow:hidden}
 .chat-avatar-mark{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:block!important;overflow:hidden!important}
 .chat-avatar-mark .chat-avatar-logo{position:absolute!important;left:50%!important;top:0!important;width:56px!important;height:53.4px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:top center!important;transform:translateX(-50%)!important;margin:0!important}
 @media(max-width:520px){.chat-avatar-mark .chat-avatar-logo{width:56px!important;height:53.4px!important}}
+
+
+/* Separación definitiva de los accesos flotantes: presupuesto, asistente y WhatsApp */
+.budget-sticky-cta{
+  right:24px!important;
+  bottom:184px!important;
+  z-index:18!important;
+  max-width:calc(100vw - 32px);
+}
+.casav-chat{right:24px!important;bottom:104px!important;z-index:20!important}
+.wa{right:24px!important;bottom:22px!important;z-index:19!important}
+@media(max-width:650px){
+  .budget-sticky-cta{right:14px!important;bottom:174px!important;padding:11px 15px!important;font-size:12px!important}
+  .casav-chat{right:14px!important;bottom:94px!important}
+  .wa{right:16px!important;bottom:16px!important}
+}
+/* Las galerías conservan el espacio aunque una imagen externa falle */
+.service-photo-grid img{background:#edf1f5;min-height:180px}
+.service-photo-grid img.image-fallback{object-position:center}
