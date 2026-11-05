@@ -448,3 +448,7 @@ body.budget-drawer-open{overflow:hidden}
 /* Las galerías conservan el espacio aunque una imagen externa falle */
 .service-photo-grid img{background:#edf1f5;min-height:180px}
 .service-photo-grid img.image-fallback{object-position:center}
+
+
+/* Se elimina el acceso flotante al formulario; se conservan los enlaces internos de la página */
+.budget-sticky-cta{display:none!important}
