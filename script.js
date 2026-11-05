@@ -173,15 +173,4 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const services=document.getElementById('servicios');
  if(!formSection||!services)return;
  services.insertAdjacentElement('afterend',formSection);
- const cta=document.createElement('a');
- cta.className='budget-sticky-cta';
- cta.href='#presupuesto';
- cta.textContent='Solicitar presupuesto';
- cta.setAttribute('aria-label','Ir al formulario de solicitud de presupuesto');
- document.body.appendChild(cta);
- cta.addEventListener('click',e=>{
-  e.preventDefault();
-  formSection.scrollIntoView({behavior:'smooth',block:'start'});
-  history.replaceState(null,'','#presupuesto');
- });
 })();
