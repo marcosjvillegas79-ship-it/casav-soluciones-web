@@ -11,7 +11,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const avatar=document.querySelector('.chat-avatar-mark');
  const logo=document.querySelector('.casav-mark');
  if(!panel||!open||!close||!messages||!form||!input)return;
- if(avatar&&logo){const mark=logo.cloneNode();mark.removeAttribute('alt');avatar.appendChild(mark);}
+ if(avatar&&logo){const mark=logo.cloneNode();mark.removeAttribute('alt');mark.classList.add('chat-avatar-logo');avatar.appendChild(mark);}
  const wa='https://wa.me/5491172815934?text='+encodeURIComponent('Hola CASAV, quisiera realizar una consulta.');
  const hours=()=>{
   const parts=new Intl.DateTimeFormat('es-AR',{timeZone:'America/Argentina/Buenos_Aires',weekday:'short',hour:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
@@ -59,27 +59,38 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  };
  const answer=(raw)=>{
   const q=raw.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').trim();
-  let key='contacto',reply=null;
+  let key='contacto',reply=null,service=null;
+  const routes=[
+   [/seguridad|camara|cctv|alarma|videovigil|control de acceso|dvr|nvr/,'Seguridad electrónica','En seguridad electrónica trabajamos con cámaras IP y CCTV, grabadores DVR/NVR, alarmas y control de acceso. Podemos orientarte según el lugar, la cantidad de cámaras y si necesitás monitoreo desde el celular.'],
+   [/electric|tablero|disyuntor|termica|iluminacion|cortocircuit|enchufe/,'Electricidad','Realizamos instalaciones eléctricas, tableros, protecciones, iluminación, diagnóstico de fallas y mantenimiento. Si hay olor a quemado, chispas o riesgo eléctrico, cortá la energía si es seguro hacerlo y no manipules la instalación.'],
+   [/plomer|agua|canilla|bano|sanitari|perdida|cañer|desag|inodoro/,'Instalaciones','Atendemos trabajos de plomería, sanitarios, cañerías, pérdidas y adecuaciones. Contanos dónde está el problema y si hay una pérdida activa.'],
+   [/aire|climat|refriger|calefaccion|split|acondicionado/,'Instalaciones','Podemos orientarte en instalación y mantenimiento de climatización. Decinos si es instalación, reparación o mantenimiento, el tipo de equipo y su capacidad si la conocés.'],
+   [/impermeabil|filtracion|humedad|terraza|techo|pintur|revestim|durlock|albanil/,'Obra y terminaciones','En obra y terminaciones hacemos impermeabilización, pintura, revestimientos, albañilería y trabajos en seco. Indicá qué superficie presenta el problema y si podés adjuntá fotos.'],
+   [/herrer|soldad|carpinter|mueble|estructura metal|reja|porton/,'Herrería y carpintería','Realizamos reparaciones, ajustes, fabricación y trabajos a medida, incluyendo soldadura. Para orientarte mejor necesitamos medidas aproximadas, material y localidad.'],
+   [/comput|notebook|pc|informat|ssd|memoria ram|windows|impresora/,'Servicio técnico informático especializado','El servicio técnico incluye diagnóstico y mantenimiento de PC y notebooks, actualización de RAM y SSD, instalación de sistemas y armado de equipos. Contanos marca/modelo y cuál es la falla.'],
+   [/industrial|bomba|motor|generador|grupo electrogeno|tablero industrial/,'Mantenimiento industrial','Atendemos equipos, bombas, motores, tableros e instalaciones. Indicá qué equipo es, cuál es la falla y si buscás mantenimiento preventivo o correctivo.'],
+   [/data center|datacenter|rack|cableado|ups|servidor|fibra optica/,'Data centers e infraestructura','Trabajamos con racks, cableado estructurado, energía crítica, UPS y climatización de salas técnicas. Contanos el alcance y las características del sitio.']
+  ];
+  for(const [pattern,name,description] of routes){if(pattern.test(q)){service=name;reply=description;break;}}
   if(/presup|cotiz|precio|costo|valor|cuanto sale/.test(q))key='presupuesto';
   else if(/horario|atienden|abierto|abren/.test(q))key='horarios';
   else if(/portal|ingresar|registro|registr|acceso|cliente|ticket/.test(q))key='portal';
   else if(/admin/.test(q))key='administrador';
-  else if(/whatsapp|telefono|celular|llamar/.test(q))key='whatsapp';
-  else if(/seguridad|camara|cctv|alarma|videovigil|control de acceso/.test(q))reply='En seguridad electrónica realizamos videovigilancia con cámaras IP, grabación, alarmas y control de acceso. Podemos orientarte según el lugar, la cantidad de cámaras y si necesitás verlas desde el celular. Para cotizar, contanos la localidad y adjuntá fotos del sitio.';
-  else if(/electric|tablero|disyuntor|termica|iluminacion/.test(q))reply='En electricidad hacemos instalaciones, diagnóstico de fallas, tableros, protecciones, iluminación y mantenimiento. Describí la falla y la localidad para evaluar el trabajo.';
-  else if(/plomer|agua|canilla|bano|sanitari|perdida/.test(q))reply='En instalaciones atendemos trabajos de plomería, sanitarios, cañerías y adecuaciones. Indicá dónde está el problema y la localidad. Si es urgente, contactanos por WhatsApp.';
-  else if(/aire|climat|refriger|calefaccion/.test(q))reply='Realizamos trabajos de climatización e instalaciones vinculadas. Decinos si es instalación, mantenimiento o reparación, el tipo de equipo y la localidad.';
-  else if(/impermeabil|filtracion|humedad|terraza|techo/.test(q))reply='En obra y terminaciones hacemos impermeabilización, pintura, revestimientos, albañilería y trabajos en seco. Contanos qué superficie presenta el problema y adjuntá fotos para solicitar una evaluación.';
-  else if(/herrer|soldad|carpinter|mueble|estructura metal/.test(q))reply='En herrería y carpintería realizamos reparaciones, ajustes, fabricación y trabajos a medida, incluyendo soldadura. Describí medidas, material y lugar del trabajo.';
-  else if(/comput|notebook|pc|informat|ssd|memoria ram/.test(q))reply='El servicio técnico informático incluye diagnóstico y mantenimiento de PC y notebooks, actualización de RAM y SSD, instalación de sistemas y armado de equipos. Contanos marca/modelo, falla y localidad.';
-  else if(/industrial|bomba|motor|generador|grupo electrogeno/.test(q))reply='En mantenimiento industrial atendemos equipos, bombas, motores, tableros e instalaciones. Indicá el equipo, la falla y si el servicio es preventivo o correctivo.';
-  else if(/data center|datacenter|rack|cableado|ups|servidor/.test(q))reply='En data centers e infraestructura trabajamos con racks, cableado estructurado, energía crítica, UPS y climatización de salas técnicas. Describí el alcance y el sitio.';
-  else if(/servicio|que hacen|que ofrecen|mantenim|trabajo/.test(q))key='servicios';
-  else if(/hola|buen dia|buenas|gracias/.test(q)){add('¡Hola! Gracias por comunicarte con CASAV. Puedo orientarte sobre servicios, presupuestos, seguridad electrónica, instalaciones, mantenimiento, soporte informático o el portal de clientes. ¿Qué necesitás resolver?','bot');return;}
-  if(reply){add(reply,'bot');addWhatsAppLink();return;}
+  else if(/whatsapp|telefono|celular|llamar|contactar/.test(q))key='whatsapp';
+  else if(/hola|buen dia|buenas|gracias/.test(q)){add('¡Hola! Soy el asistente automático de CASAV. Puedo orientarte sobre nuestros servicios, ayudarte a identificar qué necesitás y llevarte al formulario de presupuesto. ¿Qué trabajo querés realizar?','bot');return;}
+  if(reply){
+   add(reply+' Para indicarte el próximo paso, ¿es para una vivienda, un comercio o una industria?','bot');
+   const button=document.createElement('a');button.href='#presupuesto';button.className='chat-action-link';button.textContent='Solicitar presupuesto de '+service;
+   button.addEventListener('click',e=>{e.preventDefault();document.getElementById('presupuesto')?.scrollIntoView({behavior:'smooth'});panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});
+   messages.appendChild(button);messages.scrollTop=messages.scrollHeight;return;
+  }
+  if(key==='contacto'&&!/servicio|que hacen|que ofrecen|mantenim|trabajo/.test(q)&&q.length>18){
+   add('Quiero orientarte bien, pero no llego a identificar el tema. ¿Tu consulta es por electricidad, seguridad electrónica, plomería, climatización, obra, mantenimiento industrial, informática o data centers?','bot');return;
+  }
+  if(/servicio|que hacen|que ofrecen|mantenim|trabajo/.test(q))key='servicios';
   add(answers[key],'bot');
   if(key==='whatsapp'||key==='contacto')addWhatsAppLink();
-  if(key==='presupuesto'){const a=document.createElement('a');a.href='#presupuesto';a.className='chat-action-link';a.textContent='Ir al formulario de presupuesto';a.addEventListener('click',()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});messages.appendChild(a);}
+  if(key==='presupuesto'){const link=document.createElement('a');link.href='#presupuesto';link.className='chat-action-link';link.textContent='Ir al formulario de presupuesto';link.addEventListener('click',e=>{e.preventDefault();document.getElementById('presupuesto')?.scrollIntoView({behavior:'smooth'});panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');});messages.appendChild(link);}
  };
  const show=()=>{panel.classList.add('is-open');panel.setAttribute('aria-hidden','false');open.setAttribute('aria-expanded','true');input.focus();};
  const hide=()=>{panel.classList.remove('is-open');panel.setAttribute('aria-hidden','true');open.setAttribute('aria-expanded','false');open.focus();};
@@ -153,35 +164,24 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
 })();
 
 
-// Panel lateral de solicitud de presupuesto: conserva el formulario y lo abre sobre la página.
+
+
+
+// Ubicar el formulario completo después de servicios, en el flujo normal de la página.
 (()=>{
- const section=document.getElementById('presupuesto');
- if(!section||document.getElementById('budget-drawer'))return;
- const overlay=document.createElement('div');
- overlay.id='budget-drawer';
- overlay.className='budget-drawer';
- overlay.setAttribute('aria-hidden','true');
- overlay.innerHTML='<div class="budget-drawer-backdrop" data-budget-close></div><aside class="budget-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="budget-drawer-title"><div class="budget-drawer-top"><strong id="budget-drawer-title">Solicitar presupuesto</strong><button type="button" class="budget-drawer-close" data-budget-close aria-label="Cerrar formulario">×</button></div><div class="budget-drawer-content"></div></aside>';
- document.body.appendChild(overlay);
- const content=overlay.querySelector('.budget-drawer-content');
- content.appendChild(section);
- const launcher=document.createElement('button');
- launcher.type='button';launcher.className='budget-drawer-launcher';launcher.textContent='Solicitar presupuesto';
- launcher.setAttribute('aria-controls','budget-drawer');launcher.setAttribute('aria-expanded','false');
- document.body.appendChild(launcher);
- const open=()=>{
-  overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
-  launcher.setAttribute('aria-expanded','true');document.body.classList.add('budget-drawer-open');
-  const first=section.querySelector('input:not([type=hidden]),select,textarea');
-  if(first)first.focus();
- };
- const close=()=>{
-  overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');
-  launcher.setAttribute('aria-expanded','false');document.body.classList.remove('budget-drawer-open');
-  launcher.focus();
- };
- launcher.addEventListener('click',open);
- overlay.addEventListener('click',e=>{if(e.target.closest('[data-budget-close]'))close();});
- document.querySelectorAll('a[href="#presupuesto"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();open();}));
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('is-open'))close();});
+ const formSection=document.getElementById('presupuesto');
+ const services=document.getElementById('servicios');
+ if(!formSection||!services)return;
+ services.insertAdjacentElement('afterend',formSection);
+ const cta=document.createElement('a');
+ cta.className='budget-sticky-cta';
+ cta.href='#presupuesto';
+ cta.textContent='Solicitar presupuesto';
+ cta.setAttribute('aria-label','Ir al formulario de solicitud de presupuesto');
+ document.body.appendChild(cta);
+ cta.addEventListener('click',e=>{
+  e.preventDefault();
+  formSection.scrollIntoView({behavior:'smooth',block:'start'});
+  history.replaceState(null,'','#presupuesto');
+ });
 })();
