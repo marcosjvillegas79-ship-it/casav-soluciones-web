@@ -308,3 +308,64 @@ header .logo .casav-mark{position:absolute!important;left:0!important;top:0!impo
  .chat-avatar-mark .casav-mark{width:117px!important;height:28px!important}
  .chat-panel{height:min(560px,calc(100vh - 130px))!important}
 }
+
+
+/* Corrección definitiva del logo CASAV: el original es vertical (símbolo arriba, nombre debajo).
+   Se conserva su proporción y se recorta únicamente la zona del símbolo. */
+header .logo{
+  width:100px!important;
+  height:86px!important;
+  flex:0 0 100px!important;
+  overflow:hidden!important;
+  position:relative!important;
+  display:block!important;
+}
+header .logo .casav-mark{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  display:block!important;
+  width:100px!important;
+  height:95.4px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:fill!important;
+  object-position:top left!important;
+  transform:none!important;
+}
+.chat-avatar-mark{
+  width:44px!important;
+  height:34px!important;
+  overflow:hidden!important;
+  position:absolute!important;
+  inset:0!important;
+}
+.chat-avatar-mark .casav-mark{
+  position:absolute!important;
+  left:0!important;
+  top:0!important;
+  width:44px!important;
+  height:42px!important;
+  max-width:none!important;
+  max-height:none!important;
+  object-fit:fill!important;
+}
+@media(max-width:520px){
+  header .logo{
+    width:78px!important;
+    height:68px!important;
+    flex-basis:78px!important;
+  }
+  header .logo .casav-mark{
+    width:78px!important;
+    height:74.4px!important;
+  }
+  .chat-avatar-mark{
+    width:38px!important;
+    height:30px!important;
+  }
+  .chat-avatar-mark .casav-mark{
+    width:38px!important;
+    height:36.3px!important;
+  }
+}
