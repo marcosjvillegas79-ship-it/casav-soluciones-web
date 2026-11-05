@@ -115,7 +115,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  const content=document.getElementById('service-detail-content');
  if(!modal||!content)return;
  const photo=(id)=>'https://images.unsplash.com/'+id+'?auto=format&fit=crop&w=1100&q=82';
- const brandDomains={siemens:'siemens.com',schneiderelectric:'se.com',philips:'philips.com',hikvision:'hikvision.com',dahuatechnology:'dahuasecurity.com',tplink:'tp-link.com',uniview:'uniview.com',avigilon:'avigilon.com',motorola:'motorolasolutions.com',imou:'imoulife.com',suprema:'supremainc.com',apc:'apc.com',kingstontechnology:'kingston.com',samsung:'samsung.com',sika:'arg.sika.com',lg:'lg.com',viewsonic:'viewsonic.com',dell:'dell.com',hp:'hp.com',logitech:'logitech.com',amd:'amd.com',intel:'intel.com',abb:'global.abb',legrand:'legrand.com',weg:'weg.net',chint:'chintglobal.com',phoenixcontact:'phoenixcontact.com',finder:'findernet.com',prysmian:'prysmiangroup.com',ledvance:'ledvance.com',cambre:'cambre.com.ar',sica:'sicaelec.com',hellermanntyton:'hellermanntyton.com',intelbras:'intelbras.com',ezviz:'ezviz.com',ajax:'ajax.systems',zkteco:'zkteco.com',sherwinwilliams:'sherwin-williams.com',alba:'alba.com.ar',weber:'ar.weber',knauf:'knauf.com',durlock:'durlock.com',fv:'fvsa.com',ferrum:'ferrum.com',tigre:'tigre.com.ar',ips:'ips.com.ar',rotoplas:'rotoplas.com',carrier:'carrier.com',surrey:'surrey.com.ar',bgh:'bgh.com.ar',daikin:'daikin.com',midea:'midea.com',bosch:'bosch.com',dewalt:'dewalt.com',makita:'makita.com',hafele:'hafele.com',masisa:'masisa.com',faplac:'faplac.com.ar',lincolnelectric:'lincolnelectric.com',esab:'esab.com',infra:'infra.com.mx'};
+ const brandDomains={siemens:'siemens.com',schneiderelectric:'se.com',philips:'philips.com',hikvision:'hikvision.com',dahuatechnology:'dahuasecurity.com',tplink:'tp-link.com',uniview:'uniview.com',avigilon:'avigilon.com',motorola:'motorolasolutions.com',pelco:'pelco.com',amag:'amag.com',tiandy:'tiandy.com',imou:'imoulife.com',suprema:'supremainc.com',apc:'apc.com',kingstontechnology:'kingston.com',samsung:'samsung.com',sika:'arg.sika.com',lg:'lg.com',viewsonic:'viewsonic.com',dell:'dell.com',hp:'hp.com',logitech:'logitech.com',amd:'amd.com',intel:'intel.com',abb:'global.abb',legrand:'legrand.com',weg:'weg.net',chint:'chintglobal.com',phoenixcontact:'phoenixcontact.com',finder:'findernet.com',prysmian:'prysmiangroup.com',ledvance:'ledvance.com',cambre:'cambre.com.ar',sica:'sicaelec.com',hellermanntyton:'hellermanntyton.com',intelbras:'intelbras.com',ezviz:'ezviz.com',ajax:'ajax.systems',zkteco:'zkteco.com',sherwinwilliams:'sherwin-williams.com',alba:'alba.com.ar',weber:'ar.weber',knauf:'knauf.com',durlock:'durlock.com',fv:'fvsa.com',ferrum:'ferrum.com',tigre:'tigre.com.ar',ips:'ips.com.ar',rotoplas:'rotoplas.com',carrier:'carrier.com',surrey:'surrey.com.ar',bgh:'bgh.com.ar',daikin:'daikin.com',midea:'midea.com',bosch:'bosch.com',dewalt:'dewalt.com',makita:'makita.com',hafele:'hafele.com',masisa:'masisa.com',faplac:'faplac.com.ar',lincolnelectric:'lincolnelectric.com',esab:'esab.com',infra:'infra.com.mx'};
  const brand=(slug,alt)=>({src:'https://www.google.com/s2/favicons?domain='+(brandDomains[slug]||slug+'.com')+'&sz=128',alt});
  const electricalBrands=[
   brand('schneiderelectric','Schneider Electric'),brand('siemens','Siemens'),brand('abb','ABB'),brand('legrand','Legrand'),brand('weg','WEG'),
@@ -124,7 +124,7 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  ];
  const data={
   'Electricidad':{desc:'Instalaciones eléctricas residenciales, comerciales e industriales; montaje de tableros, protecciones, iluminación, canalizaciones, diagnóstico y mantenimiento.',photos:['photo-1621905251189-08b45d6a269e','photo-1621905252507-b35492cc74b4','photo-1581092160562-40aa08e78837','photo-1621905251918-48416bd8575a'],brands:electricalBrands},
-  'Seguridad electrónica':{desc:'Diseño e instalación de videovigilancia, cámaras IP, grabación, alarmas y soluciones de control de acceso.',photos:['photo-1557597774-9d273605dfa9','photo-1558008258-3256797b43f3','photo-1582139329536-e7284fece509','photo-1563013544-bd5a0b7d9e4b'],brands:[brand('hikvision','Hikvision'),brand('dahuatechnology','Dahua'),brand('tplink','TP-Link'),brand('uniview','Uniview'),brand('avigilon','Avigilon'),brand('motorola','Motorola Solutions'),brand('imou','Imou'),brand('suprema','Suprema'),brand('intelbras','Intelbras'),brand('ezviz','EZVIZ'),brand('ajax','Ajax Systems'),brand('zkteco','ZKTeco')]},
+  'Seguridad electrónica':{desc:'Diseño e instalación de videovigilancia, cámaras IP, grabación, alarmas y soluciones de control de acceso.',photos:['photo-1557597774-9d273605dfa9','photo-1558008258-3256797b43f3','photo-1582139329536-e7284fece509','photo-1563013544-bd5a0b7d9e4b'],brands:[brand('hikvision','Hikvision'),brand('dahuatechnology','Dahua'),brand('tplink','TP-Link'),brand('uniview','Uniview'),brand('avigilon','Avigilon'),brand('motorola','Motorola Solutions'),brand('pelco','Pelco'),brand('amag','AMAG Technology'),brand('tiandy','Tiandy'),brand('imou','Imou'),brand('suprema','Suprema'),brand('intelbras','Intelbras'),brand('ezviz','EZVIZ'),brand('ajax','Ajax Systems'),brand('zkteco','ZKTeco')]},
   'Mantenimiento general':{desc:'Mantenimiento preventivo y correctivo de edificios, instalaciones y equipamiento; inspecciones, reparaciones y seguimiento de incidencias.',photos:['photo-1581578731548-c64695cc6952','photo-1504307651254-35680f356dfd','photo-1523413651479-597eb2da0ad6','photo-1581093458791-9d42e3c2b7f4'],brands:[...electricalBrands,brand('apc','APC')]},
   'Mantenimiento industrial':{desc:'Mantenimiento industrial preventivo y correctivo de máquinas, bombas, motores, tableros, instalaciones y sistemas auxiliares.',photos:['photo-1581092160607-ee22621dd758','photo-1581092334651-ddf26d9a09d0','photo-1581092162384-8987c1d64718','photo-1581092795360-fd1ca04f0952'],brands:[brand('siemens','Siemens'),brand('abb','ABB'),brand('weg','WEG'),brand('schneiderelectric','Schneider Electric'),brand('phoenixcontact','Phoenix Contact'),brand('finder','Finder')]},
   'Obra y terminaciones':{desc:'Pintura profesional, revestimientos, impermeabilización, albañilería y construcción en seco para renovar y proteger espacios.',photos:['photo-1562259949-e8e7689d7828','photo-1589939705384-5185137a7f0f','photo-1503387762-592deb58ef4e','photo-1600607687939-ce8a6c25118c'],brands:[brand('sika','Sika'),brand('sherwinwilliams','Sherwin-Williams'),brand('alba','Alba'),brand('weber','Weber'),brand('knauf','Knauf'),brand('durlock','Durlock')]},
@@ -150,4 +150,38 @@ const m=document.getElementById('menu'),n=document.getElementById('nav');m.addEv
  });
  modal.addEventListener('click',e=>{if(e.target.closest('[data-close-service]'))close();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('is-open'))close();});
+})();
+
+
+// Panel lateral de solicitud de presupuesto: conserva el formulario y lo abre sobre la página.
+(()=>{
+ const section=document.getElementById('presupuesto');
+ if(!section||document.getElementById('budget-drawer'))return;
+ const overlay=document.createElement('div');
+ overlay.id='budget-drawer';
+ overlay.className='budget-drawer';
+ overlay.setAttribute('aria-hidden','true');
+ overlay.innerHTML='<div class="budget-drawer-backdrop" data-budget-close></div><aside class="budget-drawer-panel" role="dialog" aria-modal="true" aria-labelledby="budget-drawer-title"><div class="budget-drawer-top"><strong id="budget-drawer-title">Solicitar presupuesto</strong><button type="button" class="budget-drawer-close" data-budget-close aria-label="Cerrar formulario">×</button></div><div class="budget-drawer-content"></div></aside>';
+ document.body.appendChild(overlay);
+ const content=overlay.querySelector('.budget-drawer-content');
+ content.appendChild(section);
+ const launcher=document.createElement('button');
+ launcher.type='button';launcher.className='budget-drawer-launcher';launcher.textContent='Solicitar presupuesto';
+ launcher.setAttribute('aria-controls','budget-drawer');launcher.setAttribute('aria-expanded','false');
+ document.body.appendChild(launcher);
+ const open=()=>{
+  overlay.classList.add('is-open');overlay.setAttribute('aria-hidden','false');
+  launcher.setAttribute('aria-expanded','true');document.body.classList.add('budget-drawer-open');
+  const first=section.querySelector('input:not([type=hidden]),select,textarea');
+  if(first)first.focus();
+ };
+ const close=()=>{
+  overlay.classList.remove('is-open');overlay.setAttribute('aria-hidden','true');
+  launcher.setAttribute('aria-expanded','false');document.body.classList.remove('budget-drawer-open');
+  launcher.focus();
+ };
+ launcher.addEventListener('click',open);
+ overlay.addEventListener('click',e=>{if(e.target.closest('[data-budget-close]'))close();});
+ document.querySelectorAll('a[href="#presupuesto"]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();open();}));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('is-open'))close();});
 })();
