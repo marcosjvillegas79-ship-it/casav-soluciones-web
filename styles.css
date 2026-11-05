@@ -409,3 +409,18 @@ body.budget-drawer-open{overflow:hidden}
 .chat-avatar-mark{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;overflow:hidden!important}
 .chat-avatar-mark .casav-mark{position:relative!important;left:auto!important;top:0!important;width:58px!important;height:86px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;transform:none!important}
 @media(max-width:520px){.service-brand-set .service-brand-item{flex-basis:100px!important}.chat-avatar-mark .casav-mark{width:54px!important;height:80px!important}}
+
+
+/* Formulario de presupuesto integrado al recorrido: ancho cómodo y CTA fijo discreto */
+#presupuesto{scroll-margin-top:26px!important;width:min(1120px,92vw)!important;margin:34px auto!important;padding:36px!important;border:1px solid #e2e8ef!important;border-radius:18px!important;background:#f5f7fa!important;box-sizing:border-box!important}
+#presupuesto .budget-form{max-width:960px!important}
+.budget-sticky-cta{position:fixed!important;right:24px!important;bottom:24px!important;z-index:950!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:14px 21px!important;border-radius:999px!important;background:#f47721!important;color:#fff!important;text-decoration:none!important;font-weight:800!important;box-shadow:0 8px 24px #172f4540!important}
+.budget-sticky-cta:hover{background:#df6415!important;transform:translateY(-2px)}
+.chat-avatar{width:46px!important;height:46px!important;min-width:46px!important;min-height:46px!important;display:flex!important;align-items:center!important;justify-content:center!important;overflow:hidden!important;position:relative!important;padding:0!important;box-sizing:border-box!important}
+.chat-avatar-mark{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;display:flex!important;align-items:flex-start!important;justify-content:center!important;overflow:hidden!important}
+.chat-avatar-mark .chat-avatar-logo{position:relative!important;display:block!important;left:auto!important;top:0!important;width:48px!important;height:46px!important;max-width:none!important;max-height:none!important;object-fit:fill!important;object-position:center top!important;transform:none!important;margin:0!important}
+@media(max-width:650px){
+ #presupuesto{width:100%!important;margin:24px 0!important;padding:25px 16px!important;border-radius:12px!important}
+ .budget-sticky-cta{right:14px!important;bottom:16px!important;padding:12px 16px!important}
+}
+@media(prefers-reduced-motion:reduce){.budget-sticky-cta{transition:none!important}}
